@@ -3,6 +3,7 @@
 var express = require('express');
 
 var app = express();
+app.locals.pretty = true;	//	align html tags which written in Jade template
 
 app.set('view engine', 'jade');		//	setup to use 'jade' as a template engine
 app.set('views', './views');	//	jade conventionally locates template files into 'views' directory
@@ -10,7 +11,7 @@ app.set('views', './views');	//	jade conventionally locates template files into 
 app.use(express.static('public'));	//	assign location 'public' in which static files are located
 
 app.get('/template', function(req, res){	//	router to '/template' location
-	res.render('temp');		//	load 'temp' template file
+	res.render('temp', {time:Date(), _title:'Jade'});		//	load 'temp' template file
 });
 
 app.get('/', function(req, res){	//	router: connect to home(/) with GET method
