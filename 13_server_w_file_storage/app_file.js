@@ -30,40 +30,69 @@ app.post('/topic', function(req, res){
 			console.log(err);
 			res.status(500).send('Internal Server Error');
 		}
-		res.redirect('/topic');
+		res.redirect('/topic/'+title);
 	});
 });
 
-app.get('/topic', function(req, res){
-	fs.readdir('data', function(err, files){
-		if(err){
-			console.log(err);
-			res.status(500).send('Internal Server Error');
-		}
-		res.render('view', {topics:files});
-	});
-});
+//app.get('/topic', function(req, res){
+//	fs.readdir('data', function(err, files){
+//		if(err){
+//			console.log(err);
+//			res.status(500).send('Internal Server Error');
+//		}
+//		res.render('view', {topics:files});
+//	});
+//});
 
 app.get('/topic/new', function(req, res){
-	res.render('new');
-});
-
-app.get('/topic/:id', function(req, res){
-	var id = req.params.id;
+	
 	fs.readdir('data', function(err, files){
-
 		if(err){
 			console.log(err);
 			res.status(500).send('Internal Server Error');
 		}
+		res.render('new', {topics:files});
+	});
+});
 
-		fs.readFile('data/'+id, 'utf8', function(err, data){
-			if(err){
-				console.log(err);
-				res.status(500).send('Internal Server Error');
-			}
-			res.render('view', {topics:files, title:id, description:data});
-		});
+//app.get('/topic/:id', function(req, res){
+//	var id = req.params.id;
+//	fs.readdir('data', function(err, files){
+//
+//		if(err){
+//			console.log(err);
+//			res.status(500).send('Internal Server Error');
+//		}
+//
+//		fs.readFile('data/'+id, 'utf8', function(err, data){
+//			if(err){
+//				console.log(err);
+//				res.status(500).send('Internal Server Error');
+//			}
+//			res.render('view', {topics:files, title:id, description:data});
+//		});
+//	});
+//});
+
+app.get(['/topic', '/topic/:id'], function(req, res){
+	var id = req.params.id;
+	fs.readdir('data', function(err, files){
+		if(err){
+			console.log(err);
+			res.status(500).send('Internal Server Error');
+		}
+		if(id){
+			fs.readFile('data/'+id, 'utf8', function(err, data){
+				if(err){
+					console.log(err);
+					res.status(500).send('Internal Server Error');
+				}
+				res.render('view', {topics:files, title:id, description:data});
+			});
+		}
+		else{
+			res.render('view', {topics:files, title:'Welcome', description:'Hello, JavaScript for Server'});
+		}
 	});
 });
 
