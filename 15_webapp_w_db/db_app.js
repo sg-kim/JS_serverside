@@ -27,17 +27,22 @@ app.listen(3003, function(){
 //	Routers
 
 app.get(['/topic', '/topic/:id'], function(req, res){
+
 	var id = req.params.id;
-	var sql;
+	//var sql = 'SELECT title FROM topic';
+	var sql = 'SELECT * FROM topic';
 
 	if(id){
-		res.render('view', {});
+		db.query(sql).then(function(results){
+			sql = 'SELECT title, description FROM topic WHERE @rid=:rid';
+	
+			db.query(sql, {params:{rid:id}}).then(function(result){
+				res.render('view', {topics:results, topic:result[0]});
+			});
+		});
 	}
 	else{
-		sql = 'SELECT title FROM topic';
-
 		db.query(sql).then(function(results){
-			console.log(results);
 			res.render('view', {topics:results});
 		});
 	}
