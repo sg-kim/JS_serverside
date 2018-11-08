@@ -1,7 +1,7 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
-var orientDB = require('orinetjs');
+var orientDB = require('orientjs');
 
 var app = express();
 
@@ -26,30 +26,35 @@ app.listen(3003, function(){
 
 //	Routers
 
-app.get(['topic', '/topic/:id'], function(req, res){
+app.get(['/topic', '/topic/:id'], function(req, res){
 	var id = req.params.id;
-	
+	var sql;
+
 	if(id){
 		res.render('view', {});
 	}
 	else{
-		res.render('view', {});
+		sql = 'SELECT title FROM topic';
+
+		db.query(sql).then(function(results){
+			console.log(results);
+			res.render('view', {topics:results});
+		});
 	}
 });
-
-app.get('topic/add', function(req, res){
-	
+/*
+app.get('/topic/add', function(req, res){
 	res.render('add', {});
 });
 
-app.post('topic/add', function(req, res){
+app.post('/topic/add', function(req, res){
 	var title = req.body.title;
-	var description = req.body.description;
+	var desc = req.body.description;
 	
 	var sql = 'INSERT INTO topic (title, description) VALUES(:title, :desc)';
 	
 	var param = {
-		params {
+		params:{
 			title: ${title},
 			description: ${description};
 		}
@@ -57,17 +62,15 @@ app.post('topic/add', function(req, res){
 
 	db.query(sql, param).then(function(results){
 		console.log(results);
-		res.redirect('topic/' + title);
+		res.redirect('/topic/' + title);
 	}
 });
 
-app.get('topic/:id/edit', function(req, res){
-	
+app.get('/topic/:id/edit', function(req, res){
 	res.render('edit', {});
 });
 
-app.post('topic/:id/edit', function(req, res){
-	
+app.post('/topic/:id/edit', function(req, res){
 	var title = req.body.title;
 	var desc = req.body.description;
 	var id = ;
@@ -105,9 +108,10 @@ app.post('topic/:id/delete', function(req, res){
 		}
 	}
 	
-	db.query(sql, param).then(function(result){
+	db.query(sql, param).then(function(results){
 		console.log(results);
 		res.redirect('topic/');
 	});
 });
+*/
 
