@@ -24,5 +24,6 @@ html
 				a(href='/topic/add') add
 			if topic
 				li
+					- rid = encodeURIComponent(topic['@rid'])
 					a(href='/topic/' + rid + '/edit') edit
 

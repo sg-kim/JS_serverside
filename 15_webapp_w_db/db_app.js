@@ -46,7 +46,7 @@ app.get(['/topic', '/topic/:id'], function(req, res){
 
 	if(id){
 		db.query(sql).then(function(results){
-			sql = 'SELECT title, description, author FROM topic WHERE @rid=:rid';
+			sql = 'SELECT * FROM topic WHERE @rid=:rid';
 	
 			db.query(sql, {params:{rid:id}}).then(function(result){
 				res.render('view', {topics:results, topic:result[0]});
@@ -84,47 +84,44 @@ app.post('/topic/add', function(req, res){
 
 app.get('/topic/:id/edit', function(req, res){
 	var id = req.params.id;
-//	var sql = 'SELECT title FROM topic';
-	var sql = "SELECT title '@rid' FROM topic";
+	var sql = "SELECT * FROM topic";
 	
 	//id = encodeURIComponent(id);
-
+	
 	db.query(sql).then(function(results){
-//		sql = 'SELECT title, description, author FROM topic WHERE @rid=:rid';
-//		param = {
-//			params:{
-//				rid:id
-//			}
-//		};
-//		db.query(sql, param).then(function(result){
-//			console.log(result);
-//			res.render('edit', {topics:results, topic:result[0]});
-//		});
-		console.log(results);
+		sql = 'SELECT * FROM topic WHERE @rid=:rid';
+		param = {
+			params:{
+				rid:id
+			}
+		};
+		db.query(sql, param).then(function(result){
+			res.render('edit', {topics:results, topic:result[0]});
+		});
 	});
 });
 
-//app.post('/topic/:id/edit', function(req, res){
-//	var id = req.params.id;
-//	var title = req.body.title;
-//	var desc = req.body.description;
-//	var author = req.body.author;
-//	
-//	var sql = 'UPDATE topic SET title=:title description=:desc author:author WHERE @rid=:rid';
-//
-//	var param = {
-//		params:{
-//			title:title,
-//			description:desc,
-//			author:author,
-//			rid:id
-//		}
-//	};
-//
-//	db.query(sql, param).then(function(results){
-//		res.redirect('/topic/' + id);
-//	});
-//});
+app.post('/topic/:id/edit', function(req, res){
+	var id = req.params.id;
+	var title = req.body.title;
+	var desc = req.body.description;
+	var author = req.body.author;
+	
+	var sql = 'UPDATE topic SET title=:title, description=:desc, author:author WHERE @rid=:rid';
+
+	var param = {
+		params:{
+			title:title,
+			description:desc,
+			author:author,
+			rid:id
+		}
+	};
+
+	db.query(sql, param).then(function(results){
+		res.redirect('/topic/' + id);
+	});
+});
 
 /*
 app.get('topic/:id/delete', function(req, res){

@@ -12,13 +12,15 @@ html
 					//a(href='/topic/' + topic['title'])= topic['title']
 					a(href='/topic/' + rid)= topic['title']
 		article
-			form(action='/topic' + rid + '/edit' method='post')
+			- rid = encodeURIComponent(topic['@rid'])
+			form(action='/topic/' + rid + '/edit' method='post')
 				p
 					input(type='text' name='title' placeholder='title' value=topic['title'])
 				p
 					textarea(name='description' placeholder='description')
+						=topic['description']
 				p
-					input(type='text' name='author' placeholder='author')
+					input(type='text' name='author' placeholder='author' value=topic['author'])
 				p
 					input(type='submit')
 
