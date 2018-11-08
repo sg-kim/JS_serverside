@@ -27,13 +27,10 @@ app.listen(3003, function(){
 //	Routers
 
 app.get('/topic/add', function(req, res){
-	var sql = 'SELECT * FROM topic';
-	db.query(sql).then(function(results){
-		if(results.length == 0){
-			console.log('There is no topic record.');
-			res.status(500).send('Internal Server Error');
 
-		}
+	var sql = 'SELECT * FROM topic';
+
+	db.query(sql).then(function(results){
 		res.render('add', {topics:results});
 	});
 });
@@ -61,6 +58,7 @@ app.get(['/topic', '/topic/:id'], function(req, res){
 });
 
 app.post('/topic/add', function(req, res){
+
 	var title = req.body.title;
 	var desc = req.body.description;
 	var author = req.body.author;
@@ -107,12 +105,12 @@ app.post('/topic/:id/edit', function(req, res){
 	var desc = req.body.description;
 	var author = req.body.author;
 	
-	var sql = 'UPDATE topic SET title=:title, description=:desc, author:author WHERE @rid=:rid';
+	var sql = 'UPDATE topic SET title=:title, description=:desc, author=:author WHERE @rid=:rid';
 
 	var param = {
 		params:{
 			title:title,
-			description:desc,
+			desc:desc,
 			author:author,
 			rid:id
 		}
@@ -123,28 +121,42 @@ app.post('/topic/:id/edit', function(req, res){
 	});
 });
 
-/*
-app.get('topic/:id/delete', function(req, res){
+app.get('/topic/:id/delete', function(req, res){
 	
 	var id = req.params.id;
+
+	var sql = 'SELECT * FROM topic';
 	
-	res.render('delete', {});
+	db.query(sql).then(function(results){
+
+		sql = 'SELECT * FROM topic WHERE @rid=:rid';
+
+		param = {
+			params:{
+				rid:id
+			}
+		};
+
+		db.query(sql, param).then(function(result){
+			res.render('delete', {topics:results, topic:result[0]});
+		});
+	});
 });
 
-app.post('topic/:id/delete', function(req, res){
-	
-	var sql = 'DELETE FROM topic WHERE @rid=rid';
+app.post('/topic/:id/delete', function(req, res){
+
+	var id = req.params.id;
+
+	var sql = 'DELETE FROM topic WHERE @rid=:rid';
 
 	var param = {
 		params:{
-			rid: ${id}
+			rid:id
 		}
 	}
 	
-	db.query(sql, param).then(function(results){
-		console.log(results);
-		res.redirect('topic/');
+	db.query(sql, param).then(function(result){
+		res.redirect('/topic/');
 	});
 });
-*/
 
