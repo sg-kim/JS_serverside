@@ -12,17 +12,13 @@ html
 					//a(href='/topic/' + topic['title'])= topic['title']
 					a(href='/topic/' + rid)= topic['title']
 		article
-			if topic
-				h2= topic['title']
-				= topic['description']
-				div= 'by ' + topic['author']
-			else
-				h2 Welcome
-				| This is server side javascript tutorial.	//	| = pipe
-		ul
-			li
-				a(href='/topic/add') add
-			if topic
-				li
-					a(href='/topic/' + rid + '/edit') edit
+			form(action='/topic/add' method='post')
+				p
+					input(type='text' name='title' placeholder='title')
+				p
+					textarea(name='description' placeholder='description')
+				p
+					input(type='text' name='author' placeholder='author')
+				p
+					input(type='submit')
 

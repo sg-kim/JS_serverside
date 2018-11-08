@@ -26,6 +26,18 @@ app.listen(3003, function(){
 
 //	Routers
 
+app.get('/topic/add', function(req, res){
+	var sql = 'SELECT * FROM topic';
+	db.query(sql).then(function(results){
+		if(results.length == 0){
+			console.log('There is no topic record.');
+			res.status(500).send('Internal Server Error');
+
+		}
+		res.render('add', {topics:results});
+	});
+});
+
 app.get(['/topic', '/topic/:id'], function(req, res){
 
 	var id = req.params.id;
@@ -34,7 +46,7 @@ app.get(['/topic', '/topic/:id'], function(req, res){
 
 	if(id){
 		db.query(sql).then(function(results){
-			sql = 'SELECT title, description FROM topic WHERE @rid=:rid';
+			sql = 'SELECT title, description, author FROM topic WHERE @rid=:rid';
 	
 			db.query(sql, {params:{rid:id}}).then(function(result){
 				res.render('view', {topics:results, topic:result[0]});
@@ -47,55 +59,57 @@ app.get(['/topic', '/topic/:id'], function(req, res){
 		});
 	}
 });
-/*
-app.get('/topic/add', function(req, res){
-	res.render('add', {});
-});
 
 app.post('/topic/add', function(req, res){
 	var title = req.body.title;
 	var desc = req.body.description;
+	var author = req.body.author;
 	
-	var sql = 'INSERT INTO topic (title, description) VALUES(:title, :desc)';
+	var sql = 'INSERT INTO topic (title, description, author) VALUES(:title, :desc, :author)';
 	
 	var param = {
 		params:{
-			title: ${title},
-			description: ${description};
+			title:title,
+			desc:desc,
+			author:author
 		}
 	};
 
 	db.query(sql, param).then(function(results){
-		console.log(results);
-		res.redirect('/topic/' + title);
-	}
+		var id = results[0]['@rid'];
+		id = encodeURIComponent(id);
+		res.redirect('/topic/' + id);
+	});
 });
 
 app.get('/topic/:id/edit', function(req, res){
+	var id = req.params.id;
 	res.render('edit', {});
 });
 
 app.post('/topic/:id/edit', function(req, res){
+	var id = req.params.id;
 	var title = req.body.title;
 	var desc = req.body.description;
-	var id = ;
+	var author = req.body.author;
 	
-	var sql = 'UPDATE topic SET title=:title description=:desc WHERE @rid=:rid';
+	var sql = 'UPDATE topic SET title=:title description=:desc author:author WHERE @rid=:rid';
 
 	var param = {
 		params:{
-			title:${title},
-			description:${desc},
-			rid: ${}
+			title:title,
+			description:desc,
+			author:author,
+			rid:id
 		}
 	};
 
 	db.query(sql, param).then(function(results){
-		console.log(results);
-		res.redirect('/topic/' + title);
+		res.redirect('/topic/' + id);
 	});
 });
 
+/*
 app.get('topic/:id/delete', function(req, res){
 	
 	var id = req.params.id;
