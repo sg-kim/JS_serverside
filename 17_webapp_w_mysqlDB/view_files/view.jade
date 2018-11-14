@@ -9,7 +9,7 @@ html
 			each topic in topics
 				li
 					- id = topic['id']
-					a(href='/topic/' + id)= topic['id']
+					a(href='/topic/' + id)= topic['title']
 		article
 			if topic
 				h2= topic['title']
@@ -24,7 +24,7 @@ html
 			if topic
 				- id = topic['id']
 				li
-					a(href='topic/' + id + '/edit') edit
+					a(href='/topic/' + id + '/edit') edit
 				li
-					a(href='topic/' + id + '/delete') delete
+					a(href='/topic/' + id + '/delete') delete
 
