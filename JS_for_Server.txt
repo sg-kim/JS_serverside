@@ -1,0 +1,575 @@
+◎ NPM(Nodejs Package Manager)
+
+○ 설치, 설치된 package 확인
+
+$>npm install ${package name} -g or npm install ${package name}
+
+$>npm ls -g or npm ls
+
+예 1) npm install uglify-js -g
+모든 node.js 프로젝트들이 해당 package를 사용할 수 있도록 설치
+※ uglify는 공백문자를 제거하여 min.js를 만들어 준다.
+
+예 2) npm install underscore
+특정 프로젝트 디렉토리 내에 package를 설치
+※ underscore는 array를 handling하는 편리한 메소드들을 제공한다.
+
+※ --save option: NPM들 간에는 의존성(dependancy)이 존재한다. '--save' option은 pakage.json 파일을 참고하여(package.json의 'dependencies' section을 참고) 새로 설치하는 모듈이 필요로하는 모듈들을 함께 설치해준다.
+
+○ 내 project를 (npm이 관리하는) package로 만들기
+
+$> cd ${project directory}
+
+$> npm init
+
+entry point, version 등은 잘 모르겠으면 공란(= default)로 남겨놓는다.
+
+package.json파일이 생성되고 해당 파일 안에 대 project가 의존하고 있는 모듈들의 의존성(dependancy)이 기술된다.
+
+★ parent project를 생성하면 npm init을 통해서 npm package로 관리하는게 좋다. 왜냐하면 package.json파일을 통해 모듈들과의 의존성이 명시적으로 관리되기 때문이다.
+
+
+◎ Callback 함수
+
+함수의 인자(argument)로 전달하는 (다른) 함수를 callback함수라고 한다. Callback함수는 다른 함수로 부터 자동적으로 호출된다. 함수의 기능을 확장하는 용도로 주로 사용된다.
+
+예)
+function b(v1, v2){return (v2 - v1);}	//	callback function
+a.sort(b);	//	function as argument = callback function
+
+
+◎ 동기와 비동기
+
+동기: 내가 다 직접한다.
+비동기: 남(모듈)에게 일을 맡기고 다 한것으로 한다.
+
+예) readFile - 비동기, default. readFileSync - 동기
+
+//	Synchronous method
+console.log(1);
+var data = fs.readFileSync('7_data.txt', {encoding:'utf8'});
+console.log(data);
+
+//	Async method
+//	readFile calls callback function when the file read is done.
+console.log(2);
+fs.readFile('7_data.txt', {encoding:'utf8'}, function(err, data){console.log(3); console.log(data);});
+console.log(4);
+
+※ 비동기 작업이 맞지 않을 때는 동기방법을 사용해야 한다.
+※ node.js는 single thread application이다. 동기 방식을 사용하면 실행 시간이 계속 누적되기 때문에 처리가 늦어진다. 따라서 비동기 방식과 callback method를 활용하여 프로그램의 실행 속도를 높일 수 있다.
+
+◎ JS Express
+
+Express는 node.js위에서 동작하는 웹 프레임웍이다. Express는 node.js 서버 개발에 있어 순수히 node.js만을 가지고 만들때와 비교하여 많은 부분을 단순화 해준다.
+
+$> npm install express
+
+○ 동적 파일 vs. 정적 파일
+
+동적 파일: programming 언어 등이 들어가 있는 파일. 해석에 따라 동적으로 동작한다.
+
+정적 파일: 데이터, 기술(description)으로 내용이 구성된 파일. 의미가 고정된다.
+
+
+◎ Template engine
+
+동적 파일 핸들링과 정적 파일 핸들링의 장점을 결합한 파일 취급 방식
+
+정적 파일의 경우 static point를 지정해 주면 node.js가 정적 파일들을 자동으로 load해 주기 때문에 파일의 내용이 변경되어도 node.js server를 재시작할 필요가 없다는 장점이 있다. 하지만 동적으로 내용을 생성하는 코드가 담겨진 위치(주소, path)로 접근했을 때 이를 처리하지 못하는 단점이 있다.
+
+동적 파일 처리를 위해서는 main entry point 파일(routing logic이 들어있는 파일)에 원하는 동적 기능을 제공하는 코드를 넣어주어야 하는데 이렇게 되면 가독성이 낮아지고 무엇보다 컨텐츠와 컨트롤이 섞여서 관리가 어려워지는 단점이 생긴다.
+
+위와 같은 정적 파일 처리, 그리고 동적 파일 처리의 장점을 취하려는 파일 처리 방식이 template method이다.
+
+○ Template engine - Jade
+
+$> npm install jade --save
+
+
+◎ query string(= GET method)를 이용한 요청의 처리
+
+express call back function의 req객체의 query를 사용한다.
+
+예) req.query.id
+
+
+◎ Semantic web
+: query string 없이 URL로 특정 요청을 보내는 것
+
+예)
+Non-semanctic URL: http://example.com/index.php?page=name
+Semantic URL: http://example.com/name
+
+express call back fucntion에 전달되는 req 객체의 params를 이용한다.
+
+예) req.params.id
+
+
+◎ GET 방식과 POST 방식을 통한 정보전달
+
+① body-parser middleware를 설치한다. 사용자가 전송한 데이터는 먼저 body-parser를 통과한 후(처리된 후) app에 전달되기 때문에 middle ware라고 한다.
+
+$> npm install body-parser (-g) --save
+
+② body parser를 include시킨다.
+
+예) var bodyParser = require('body-parser');
+
+③ app.post() method를 사용해서 POST 방식으로 전달된 data를 받는다.
+
+예)
+app.post('/form_receiver', function(req, res){
+	var title = req.body.title;
+	var description = req.body.description;
+	res.send(title + ', ' + description);
+});
+
+
+◎ watcher module - supervisor
+
+파일에 변화가 있으면 해당 파일로 부터 fork된 precess를 변경된 파일의 내용으로 다시 실행시켜준다.
+
+$> npm install supervisor (-g)
+
+
+◎ 중간 정리 예제: 사용자 정보를 저장하고 (요청 시) 꺼내서 제공하는 서버 구현
+
+※ 이번 topic에서는 정보를 database에 저장하지 않고, file에 저장한다.
+
+var fs = require('fs');
+
+○ file write
+
+fs.writeFile('file_name', format, callback function);
+
+callback function은 보통 error 처리와 file write 이후 작업을 처리한다.
+
+예)
+fs.writeFile('./data/'+title, description, 'utf8', function(err){
+	if(err){
+		console.log(err);
+		res.status(500).send('Internal Server Error');
+	}
+	res.redirect('/topic/'+title);
+});
+
+○ file read
+
+fs.readFile('file_name', format, callback function);
+
+예)
+fs.readFile('data/'+id, 'utf8', function(err, data){
+	if(err){
+		console.log(err);
+		res.status(500).send('Internal Server Error');
+	}
+	res.render('view', {topics:files, title:id, description:data});
+});
+
+○ directory read
+
+fs.readdir('directory_name', callback function);
+
+예)
+fs.readdir('data', function(err, files){
+	if(err){
+		console.log(err);
+		res.status(500).send('Internal Server Error');
+	}
+	res.render('new', {topics:files});
+});
+
+
+◎ Database
+
+Relational DB(RDB)
+
+NoSQL(Not Only SQL) DB
+
+○ Orient DB - a kind of NoSQL
+
+① www.orientdb.com에 접속해서 community edition을 다운로드 받는다.
+
+② 압축을 풀고 적당한 위치에 옮겨놓는다. 예) c:
+
+③ window의 경우: server.bat를 실행시킨다
+
+④ ^C로 프로세스를 종료시킨 후에는 shutdown.bat를 실행시켜서 자원을 반납한다.
+
+OrientDB를 실행시킨 후 관리자에 접속이 필요한 경우 http connection(예, 0.0.0.0:2480)에 접속해서 관리자 화면으로 들어간다.
+
+○ OrientDB의 database 설정
+
+Table을 만든다 = DB의 구조를 정의한다.
+cf.) 구조를 완전히 정의해서 예외를 허용하지 않는다 = schemaful
+
+① class의 생성
+
+관계형 DB의 table = Orient DB에서의 class
+
+예) schema → new (generic) → class의 이름을 'topic' 등으로 설정 후 'save'
+
+② class의 property(RDB에서 table의 column) 설정
+
+관리자 화면에서 class name 선택 → '+ new property' 선택하여 property 추가
+
+예) title, description field
+
+③ 관리자 화면에서 data의 추가
+
+schema화면에서 topic 선택 → 화면 1시 방향의 'New record'선택 → 내용을 입력하고 'save'
+
+특정 행에만 field를 추가 하고 싶은 경우 '+ ADD FIELD'버튼을 이용하여 추가한다.
+
+④ 관리자 화면에서 data보기
+
+Browse → SQL command 입력
+
+예) SELECT * FROM topic;
+
+이 후 화면 아래에 data가 나타난다.
+
+⑤ 관리자 화면의 'Graph' 메뉴를 이용하여 관계성을 도식으로 확인해 볼 수 있다.
+
+○ node.js와 javascript를 이용하여 orientDB 컨트롤
+
+① orientjs module을 설치
+
+$> npm install orientjs --save
+
+② nodejs 파일 안에서 db를 다룰 때는 nodejs javascript 문법을 따른다.
+
+예)
+
+var orientDB = require('orientjs');
+
+var server = orientDB({
+	host: 'localhost',	//	DB의 위치를 알려준다.
+	port: 2424,
+	username: 'root',
+	password: 'your password'
+});
+
+var db = server.use('db name');
+
+③ SELECT(Read?)
+
+orient DB는 SQL 커맨드 입력을 받을 수 있다.
+
+예)
+
+var sql = 'SELECT * FROM topic WHERE @rid=:rid';
+var param = {
+	params:{	//	이 JSON parameter 'params'는 약속이다.
+		rid:'#22:0'
+	}
+};
+db.query(sql, param).then(function(results){	//	query의 두 번째 인자로 JSON data를 전달한다.
+	console.log(results);
+});
+
+④ INSERT
+
+예)
+
+sql = 'INSERT INTO topic (title, description) VALUES(:title, :desc)';
+
+var param = {
+	params:{
+		title:'Express',
+		desc:'Express is ...'
+	}
+};
+
+db.query(sql, param).then(function(results){
+	console.log(results);
+});
+
+⑤ UPDATE
+
+예)
+
+sql = 'UPDATE topic SET title=:title WHERE @rid=:rid';
+
+var param = {
+	params:{
+		title:'Expressjs',
+		rid:'#21:1'
+	}
+};
+
+db.query(sql, param).then(function(results){
+	console.log(results);
+});
+
+⑥ DELETE
+
+예)
+
+sql = 'DELETE FROM topic WHERE @rid=:rid';
+
+var param = {
+	params:{
+		rid:'#21:1'
+	}
+}
+
+db.query(sql, param).then(function(results){
+	console.log(results);
+});
+
+
+◎ MySQL 이용하기
+
+OS 유형에 맞게 MySQL을 설치하고 설치 위치 혹은 bin 파일의 위치로 이동한다.
+
+① DB Server에 접속하기
+
+$> mysql -u root -p
+이 후 password 입력 커맨드 라인이 나타나면 password를 입력한다.
+
+② DB 조회 및 생성
+
+mysql> show databases;
+
+mysql> create database alpha character set utf8 collate utf8_general_ci;
+
+③ Table의 조회 및 생성
+
+mysql> use alpha;
+
+mysql> show tables;
+
+mysql> CREATE TABLE `topic` (`id` int(11) NOT NULL AUTO_INCREMENT, `title` varchar(100) NOT NULL, `description` text NOT NULL, `author` varchar(30) NOT NULL, PRIMARY KEY (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+mysql> describe topic;
+
+④ record를 (입력)추가한다.
+
+mysql> insert into topic (title, description, author) VALUES('Javascript', 'Computer language for web.', 'quanto');
+
+mysql> insert into topic (title, description, author) VALUES('Express', 'Nodejs web server framework.', 'quanto');
+
+mysql> insert into topic (title, description, author) VALUES('NPM', 'Package Manager.', 'quanto');
+
+mysql> select * from topic where id=2;
+
+⑤ data의 수정
+
+mysql> update topic SET title='npm', description='Nodejs package manager' where id=3;
+
+mysql> select * from topic where id=3;
+
+⑥ data의 삭제
+
+mysql> delete from topic where id=3;
+
+mysql> select * from topic;
+
+
+○ Javascript(server side)를 이용하여 MySQL control
+
+node-mysql module이 필요하다.
+
+$> npm install --save node-mysql
+
+var mysql = require('mysql');
+var conn = mysql.createConnection({
+	host: 'localhost',
+	user: 'root',
+	password: 'heybuddy01',
+	database: 'alpha'
+});
+
+conn.connect();	//	query를 위해 DB를 연결
+
+conn.end();	//	DB query를 마치고 난 후 연결을 해제
+
+
+① Read
+
+var sql = 'SELECT * FROM topic WHERE id=?';	//	변수를 '?'로 표시한다.
+
+var params = [id];	변수(?)를 자리에 맞게 배열로 만든다.
+
+conn.query(sql, params, function(err, row, field){	//	query, 변수, callback
+	if(err){
+		console.log(err);
+		res.status(500).send('Internal Server Error');
+	}
+	else{
+		res.render('view', {topics:rows, topic:row[0]});
+	}
+});
+
+
+② Create
+
+var sql = 'INSERT INTO topic (title, description, author) VALUES(?, ?, ?)';
+
+var params = [title, description, author];	//	변수 배열
+
+conn.query(sql, params, function(err, row, field){	//	쿼리, 변수, callback
+	if(err){
+		console.log(err);
+		res.status(500).send('Internal Server Error');
+	}
+	else{
+		var id = row['insertId'];
+		res.redirect('/topic/' + id);
+	}
+});
+
+③ Update
+
+var sql = 'UPDATE topic SET title=?, description=?, author=? WHERE id=?';
+
+var params = [title, description, author, id];
+
+conn.query(sql, params, function(err, row, field){
+	if(err){
+		console.log(err);
+		res.status(500).send('Internal Server Error');
+	}
+	else{
+		res.redirect('/topic/' + id);
+	}
+});
+
+④ Delete
+
+var sql = 'DELETE FROM topic WHERE id=?';
+
+params = [id];
+
+conn.query(sql, params, function(err, rows, fields){
+	if(err){
+		console.log(err);
+		res.status(500).send('Internal Server Error');
+	}
+	else{
+		res.redirect('/topic');
+	}
+});
+
+
+◎ HTTP - Hyper Text Transfer Protocol
+
+Stateless: 매 접속은 이전 접속의 상태(데이터)를 알 수 없다.
+
+○ Cookie
+
+HTTP의 stateless 특성을 해결하기 위해서 Netscape에서 만든 서버에 저장되는 상태정보
+
+expressjs.com → API문서 → Request → req.cookies 참조: cookie-parser middle ware를 설치하도록 안내하고 있다.
+
+$> npm install cookie-parser --save
+
+★ DB가 client가 data를 server에 CRUD(Create, Read, Update, Delete)하는 것이라면, Cookie는 반대로 server가 client PC에 data를 CRUD하는 것이다.
+
+var cookieParser = require('cookie-parser');
+
+var app = express();
+
+app.use(cookieParser());
+
+① Create
+
+if(req.cookies.cart){
+	var cart = req.cookies.cart;	//	cart라는 cookie를 가져온다
+}
+else{
+	var cart = {};	//	empty javascript object
+}
+
+res.cookie('cart', cart);	//	cart라는 cookie를 만든다
+
+② Read
+
+var cart = req.cookies.cart;
+
+if(!cart){
+	res.send('Your cart is empty!');
+}
+else{
+	var output = '';
+	for(var key in cart){
+		output = output + `<li>${cart[key]}</li>`;	//	read key:value pair in the card object
+	}
+}
+res.send(`<ul>${output}</ul>`);
+
+③ Update
+
+var id = req.params.id;
+
+if(req.cookies.cart){
+	var cart = req.cookies.cart;	//	retrieve cookie cart
+}
+else{
+	var cart = {};
+}
+if(!cart[id]){
+	cart[id] = 0;	//	set key 'id' value to 0
+}
+cart[id] = parseInt(cart[id]) + 1;	//	increase cart[id] by 1
+res.cookie('cart', cart);	//	update cookie cart
+
+④ Delete
+
+
+○ Cookie와 보안
+
+Encrypt cookie
+
+app.use(cookieParser('98@sk161fvi28#$u'));	//	cookieParser에 key값을 인자로 전달
+
+var cart = req.signedCookies.cart;	//	cookies 객체 대신 signedCookie 객체를 사용
+
+res.cookie('cart', cart, {signed:true});	//	update시 세 번째 인자로 {signed:true} pair 전달
+
+★ id, password는 보안상 매우 중요한 정보이므로 어떤 경우에도 cookie에 저장하지 않는다.
+
+
+◎ Session
+
+: Cookie를 개선한 방식
+
+Server는 client의 PC에 cookie를 저장하나 cookie의 내용으로 id만을 저장한다. 실제 사용자 data는 server에 저장하고 사용자의 id로 식별하여 사용한다.
+
+자동 로그인의 경우 session을 이용하여 사용자가 명시적으로 log out하지 않은 경우 id가 맞는 사용자를 자동 로그인하는 처리를 할 수 있다.
+
+$> npm install express-session --save
+
+var session = require('express-session');
+
+app.use(session({
+	secret: '59s7xk22@&%xj2@st7',	//	key
+	resave: false,	//	create new session id whenever user visits the site
+	saveUninitialized: true		//	do not issue session id before user connection})
+);
+
+if(uname == user['username'] && pwd == user['password']){
+	req.session.nickname = user['nickname'];	//	store user's nickname into session
+	res.redirect('/welcome');
+}
+
+if(req.session.nickname){	//	check session data
+	res.send(`
+		<h1>Hello, ${req.session.nickname}</h1>
+		<a href="/auth/logout">Logout</a>
+	`);
+}
+
+※ session의 내용과 client - server가 주고 받은 cookie를 살펴보면 아래와 같다.
+
+① session의 내용: 'nickname' key가 생성되어 있고 값이 저장되어 있다.
+{"cookie":{"originalMaxAge":null,"expires":null,"httpOnly":true,"path":"/"},"nickname":"Balup zergling"}
+
+② cookie의 내용: session id가 저장되어 있다.
+Cookie: connect.sid=s%3AuOkZ10O2NQtSnnBhu0g7xMXMMXG3WP1I.9d23U2o09YTGyk148%2FywHOVEjfcdA8ohmOx6WrrhsCk
+
+특정 조건(예, user name과 password가 모두 matching)이 만족되었을 때 session에 data를 저장하고(예, nickname) 저장한 data(예, nickname)의 유무로 동일 session인지 확인할 수 있다.
+
+
