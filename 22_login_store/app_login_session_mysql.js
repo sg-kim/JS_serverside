@@ -2,6 +2,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var MySQLStore = require('express-mysql-session')(session);
 
 var app = express();
 
@@ -9,7 +10,14 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(session({
 	secret: '59s7xk22@&%xj2@st7',
 	resave: false,	//	create new session id whenever user visits the site
-	saveUninitialized: true		//	do not issue session id before user connection
+	saveUninitialized: true,	//	do not issue session id before user connection
+	store: new MySQLStore({		//	setting for storing session data into MySQL DB
+		host:'localhost',
+		port:3306,
+		user:'root',
+		password:'heybuddy01',
+		database:'alpha'
+	})
 })
 );
 

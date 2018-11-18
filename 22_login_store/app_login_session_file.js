@@ -2,6 +2,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var fileStore = require('session-file-store')(session);
 
 var app = express();
 
@@ -9,7 +10,8 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(session({
 	secret: '59s7xk22@&%xj2@st7',
 	resave: false,	//	create new session id whenever user visits the site
-	saveUninitialized: true		//	do not issue session id before user connection
+	saveUninitialized: true,	//	do not issue session id before user connection
+	store: new fileStore()	//	option for store session data into file
 })
 );
 
