@@ -12,6 +12,8 @@ var conn = mysql.createConnection({
 	database: 'alpha'
 });
 
+conn.connect();
+
 app.set('view engine', 'jade');
 app.set('views', './view_files');
 app.locals.pretty = true;
@@ -51,6 +53,7 @@ app.post('/topic/add', function(req, res){
 	conn.query(sql, params, function(err, row, field){
 		if(err){
 			console.log(err);
+			res.status(500).send('Internal Server Error');
 		}
 		else{
 			var id = row['insertId'];
@@ -68,13 +71,20 @@ app.get(['/topic', '/topic/:id'], function(req, res){
 		conn.query(sql, function(err, rows, fields){
 			if(err){
 				console.log(err);
+				res.status(500).send('Internal Server Error');
 			}
 			else{
 				sql = 'SELECT * FROM topic WHERE id=?';
 				var params = [id];
 
 				conn.query(sql, params, function(err, row, field){
-					res.render('view', {topics:rows, topic:row[0]});
+					if(err){
+						console.log(err);
+						res.status(500).send('Internal Server Error');
+					}
+					else{
+						res.render('view', {topics:rows, topic:row[0]});
+					}
 				});
 			}
 		});
@@ -83,6 +93,7 @@ app.get(['/topic', '/topic/:id'], function(req, res){
 		conn.query(sql, function(err, rows, fields){
 			if(err){
 				console.log(err);
+				res.status(500).send('Internal Server Error');
 			}
 			else{
 				res.render('view', {topics:rows});
@@ -100,6 +111,7 @@ app.get('/topic/:id/edit', function(req, res){
 
 		if(err){
 			console.log(err);
+			res.status(500).send('Internal Server Error');
 		}
 		else{
 			sql = 'SELECT * FROM topic WHERE id=?';
@@ -109,6 +121,7 @@ app.get('/topic/:id/edit', function(req, res){
 
 				if(err){
 					console.log(err);
+					res.status(500).send('Internal Server Error');
 				}
 				else{
 					res.render('edit', {topics:rows, topic:row[0]});
@@ -131,6 +144,7 @@ app.post('/topic/:id/edit', function(req, res){
 	conn.query(sql, params, function(err, row, field){
 		if(err){
 			console.log(err);
+			res.status(500).send('Internal Server Error');
 		}
 		else{
 			res.redirect('/topic/' + id);
@@ -146,6 +160,7 @@ app.get('/topic/:id/delete', function(req, res){
 	conn.query(sql, function(err, rows, fields){
 		if(err){
 			console.log(err);
+			res.status(500).send('Internal Server Error');
 		}
 		else{
 			sql = 'SELECT * FROM topic WHERE id=?';
@@ -154,9 +169,16 @@ app.get('/topic/:id/delete', function(req, res){
 			conn.query(sql, params, function(err, row, field){
 				if(err){
 					console.log(err);
+					res.status(500).send('Internal Server Error');
 				}
 				else{
-					res.render('delete', {topics:rows, topic:row[0]});
+					if(row.length == 0){
+						console.log(err);
+						res.status(500).send('Internal Server Error');
+					}
+					else{
+						res.render('delete', {topics:rows, topic:row[0]});
+					}
 				}
 			});
 		}
@@ -173,6 +195,7 @@ app.post('/topic/:id/delete', function(req, res){
 	conn.query(sql, params, function(err, rows, fields){
 		if(err){
 			console.log(err);
+			res.status(500).send('Internal Server Error');
 		}
 		else{
 			res.redirect('/topic');
