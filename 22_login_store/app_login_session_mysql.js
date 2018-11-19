@@ -56,7 +56,9 @@ app.post('/auth/login', function(req, res){
 
 	if(uname == user['username'] && pwd == user['password']){
 		req.session.nickname = user['nickname'];	//	store user's nickname into session
-		res.redirect('/welcome');
+		req.session.save(function(){
+			res.redirect('/welcome');
+		});
 	}
 	else{
 		res.send('Incorrect user information. <a href="/auth/login">login</a>');
@@ -82,6 +84,8 @@ app.get('/welcome', function(req, res){
 
 app.get('/auth/logout', function(req, res){
 	delete req.session.nickname;
-	res.redirect('/welcome');
+	req.session.save(function(){
+		res.redirect('/welcome');
+	});
 });
 
