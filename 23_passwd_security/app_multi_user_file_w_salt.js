@@ -20,11 +20,22 @@ app.listen(3006, function(){
 	console.log('Connected 3006 port!!!');
 });
 
-var user = {
-	username: 'quanto',
-	password: '698d51a19d8a121ce581499d7b701668',
-	nickname: 'Balup zergling'
-};
+var users = [
+	{
+		username: 'quanto',
+		//password: '698d51a19d8a121ce581499d7b701668',
+		password: '25539ea39dfc3e135a2147ac8770bdf8',
+		salt: '29xwwic2@3&@s10sfacv',
+		nickname: 'Balup zergling'
+	},
+	{
+		username: 'reizel',
+		//password: '698d51a19d8a121ce581499d7b701668',
+		password: 'a4e895304edb140f29cd84113dbce10a',
+		salt: 'xjlksad&@*$##$ksdjlawi',
+		nickname: 'Balup zealot'
+	}
+];
 
 app.get('/auth/login', function(req, res){
 	var output = `
@@ -47,19 +58,22 @@ app.get('/auth/login', function(req, res){
 
 app.post('/auth/login', function(req, res){
 	var uname = req.body.username;
-	//var pwd = req.body.password;
-	var pwd = md5(req.body.password);
+	var pwd = req.body.password;
+	var user;
 
-	if(uname == user['username'] && pwd == user['password']){
-		req.session.nickname = user['nickname'];	//	store user's nickname into session
-		req.session.save(function(){
-			res.redirect('/welcome');
-		});
-	}
-	else{
-		res.send('Incorrect user information. <a href="/auth/login">login</a>');
+	for(var i = 0; i < users.length; i++){
+
+		user = users[i];
+
+		if(uname == user['username'] && md5(pwd + user['salt']) == user['password']){
+			req.session.nickname = user['nickname'];	//	store user's nickname into session
+			return req.session.save(function(){		//	return(exit from 'app.post') if a user matches
+				res.redirect('/welcome');
+			});
+		}
 	}
 
+	res.send('Incorrect user information. <a href="/auth/login">login</a>');
 });
 
 app.get('/welcome', function(req, res){
