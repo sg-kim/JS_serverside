@@ -703,9 +703,48 @@ if(uname == user['username'] && sha256(pwd + user['salt']) == user['password']){
 	});
 }
 
+○ Key Stretching
 
+단방향 암호화를 여러번 거치는 것
 
+예) sha256(sha256(sha256(target data))
 
+실수 등을 방지하지 위해 Key stretching에 필요한 번거로운 구현을 단순화하기 위한 방법을 사용하는 것이 좋다.
 
+본 예제에서는 PBKDF2를 사용한다.
+
+$> npm install pbkdf2-password --save
+
+var bkfd2Password = require('pbkdf2-password');
+var hasher = bkfd2Password();
+var opts = {password: "helloworld"};
+
+hasher(opts, function(err, pass, salt, hash){
+	opts.salt = salt;	//	'salt' is created automatically
+	console.log(err, pass, salt, hash);
+});
+
+위에서 구해진 'salt'값과 'hash'값을 사용자 DB의 'salt', 'password'값으로 설정한다.
+
+아래는 nodejs server안에서의 구현이다.
+
+var bkfd2Password = require('pbkdf2-password');
+var hasher = bkfd2Password();
+
+if(uname == user['username']){
+	return hasher({password:pwd, salt:user['salt']}, function(err, pass, salt, hash){
+		if(hash == user['password']){
+			req.session.nickname = user.nickname;
+			req.session.save(function(){
+				res.redirect('/welcome');
+			});
+		}
+		else{
+			res.send('Incorrect user information. <a href="/auth/login">login</a>');
+		}
+	});
+}
+
+username이 matching되는 user의 password가 pbkdf2의 hash값과 같다면 welcome page('/welcome')로 redirection하고 함수를 끝내도록(return, 비동기 방식으로 동작하기 때문에 동작을 마친 후 함수를 exit) 하고 있다.
 
 
