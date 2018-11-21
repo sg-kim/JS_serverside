@@ -143,21 +143,18 @@ app.get('/auth/login', function(req, res){
 //});
 
 app.post('/auth/login', passport.authenticate('local', {	//	execute 'local' Strategy
-	sucessRedirect: '/welcome',
+	successRedirect: '/welcome',
 	failureRedirect: '/auth/login',
 	failureFlash: false		//	give one time message to user
 	}),
-	function(req, res){
-//		console.log('app.post - /auth/login');
-		res.redirect('/welcome');
-	}
 );
 
 app.get('/welcome', function(req, res){
-	//res.send(req.session);
-	if(req.session.nickname){
+	//if(req.session.nickname){
+	if(req.user && req.user.nickname){		//	passport creates 'user' object in the 'req' object
 		res.send(`
-			<h1>Hello, ${req.session.nickname}</h1>
+			<!--<h1>Hello, ${req.session.nickname}</h1>-->
+			<h1>Hello, ${req.user.nickname}</h1>
 			<a href="/auth/logout">Logout</a>
 		`);
 	}
@@ -175,7 +172,8 @@ app.get('/welcome', function(req, res){
 });
 
 app.get('/auth/logout', function(req, res){
-	delete req.session.nickname;
+	//delete req.session.nickname;
+	req.logout();
 	req.session.save(function(){
 		res.redirect('/welcome');
 	});
@@ -217,13 +215,19 @@ app.post('/auth/register', function(req, res){
 		};
 		users.push(user);
 	
-		console.log(users);
+		//console.log(users);
 
-		for(var i = 0; i < users.length; i++){
-			console.log(users[i]);
-		}
+		//for(var i = 0; i < users.length; i++){
+		//	console.log(users[i]);
+		//}
 
-		res.redirect('/welcome');
+		//res.redirect('/welcome');
+
+		req.login(user, function(err){
+			req.session.save(function(){
+				res.redirect('/welcome');
+			});
+		});
 	});
 });
 
