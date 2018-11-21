@@ -453,6 +453,10 @@ conn.query(sql, params, function(err, rows, fields){
 	}
 });
 
+★ MySQL 8.0 version으로 넘어오면서 인증 방법이 SHA256_PASSWORD → SHA2_PASSWORD로 강화되었다. 하지만 아직(2018.11월 기준) node.js Mysql library가 이 변화에 대응하지 못하고 있다. 접속시에 'ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server'와 같은 error 메시지가 뜬다면 mysql의 인증 방법을 다시 설정해 줄 필요가 있다. 아래와 같이 node.js를 통해 접속하고자 하는 사용자의 인증방법을 기존(native)방법으로 설정하면 node.js를 통해 8.0 version의 MySQL과 연동할 수 있다.
+
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'your root password';
+
 
 ◎ HTTP - Hyper Text Transfer Protocol
 
