@@ -81,6 +81,8 @@ app.post('/auth/login', function(req, res){
 			});
 		}
 	}
+
+	res.send('Incorrect user information. <a href="/auth/login">login</a>');
 });
 
 app.get('/welcome', function(req, res){
@@ -94,7 +96,12 @@ app.get('/welcome', function(req, res){
 	else{
 		res.send(`
 			<h1>Welcome</h1>
-			<a href="/auth/login">Login</a>
+			<p>
+				<a href="/auth/login">Login</a>
+			</p>
+			<p>
+				<a href="/auth/register">Register</a>
+			</p>
 		`);
 	}
 });
@@ -102,6 +109,52 @@ app.get('/welcome', function(req, res){
 app.get('/auth/logout', function(req, res){
 	delete req.session.nickname;
 	req.session.save(function(){
+		res.redirect('/welcome');
+	});
+});
+
+app.get('/auth/register', function(req, res){
+	var output = `
+		<h1>Login</h1>
+		<form action="/auth/register" method="post">
+			<p>
+				<input type="text" name="username" placeholder="username">
+			</p>
+			<p>
+				<input type="password" name="password" placeholder="password">
+			</p>
+			<p>
+				<input type="text" name="nickname" placeholder="nickname">
+			</p>
+			<p>
+				<input type="submit">
+			</p>
+		</form>
+	`;
+
+	res.send(output);
+});
+
+app.post('/auth/register', function(req, res){
+	var uname = req.body.username;
+	var passwd = req.body.password;
+	var nickname = req.body.nickname;
+
+	hasher({password:passwd}, function(err, pass, salt, hash){
+		var user ={
+			username:uname,
+			password:hash,
+			salt:salt,		//	'salt' is created automatically
+			nickname:nickname
+		};
+		users.push(user);
+	
+		console.log(users);
+
+		for(var i = 0; i < users.length; i++){
+			console.log(users[i]);
+		}
+
 		res.redirect('/welcome');
 	});
 });

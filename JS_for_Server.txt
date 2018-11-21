@@ -747,4 +747,40 @@ if(uname == user['username']){
 
 username이 matching되는 user의 password가 pbkdf2의 hash값과 같다면 welcome page('/welcome')로 redirection하고 함수를 끝내도록(return, 비동기 방식으로 동작하기 때문에 동작을 마친 후 함수를 exit) 하고 있다.
 
+○ user의 추가
+
+user로 부터 받은 username, password, nickname과 PBKDF2에서 생성된 hash, salt값으로 JSON 객체를 만든 뒤 이를 users array에 추가하는 방법으로 간단히 구현해 보았다.
+
+var uname = req.body.username;
+
+var passwd = req.body.password;
+var nickname = req.body.nickname;
+hasher({password:passwd}, function(err, pass, salt, hash){
+	var user ={
+		username:uname,
+		password:hash,
+		salt:salt,		//	'salt' is created automatically
+		nickname:nickname
+	};
+
+	users.push(user);
+
+	res.redirect('/welcome');
+});
+
+
+◎ Passport JS
+
+인증(authentication)을 쉽게 구현할 수 있도록 도와주는 package
+
+Federation authentication: 외부의 공신력있는 단체의 로그인 정보를 이용하여 특정 site의 로그인을 도와 주는 것
+예) FB, Google을 통해 login
+
+var passport = require('passport');
+var localStrategy = require('passport-local').Strategy;
+
+app.use(passport.initialize());
+app.use(passport.session());	//	use 'session' method when using passport
+※ passport session 설정 'app.use(passport.session());'은 session 기본 설정이 끝난 후에 설정하여야 한다.
+
 
