@@ -27,6 +27,58 @@ app.listen(3006, function(){
 	console.log('Connected 3006 port!!!');
 });
 
+passport.serializeUser(function(user, done){	//	'done(null, user)' runs this routine
+	console.log('serializeUser', user);
+	done(null, user['username']);	//	store 'username' into a session
+});
+
+passport.deserializeUser(function(id, done){	//	runs whenever user visits each page with session data
+	console.log('deserializeUser', id);
+	for(var i = 0; i < users.length; i++){
+		var user = users[i];
+		if(user['username'] == id){
+			return done(null, user);
+		}
+	}
+	//User.findById(id, function(err, user){
+	//	done(err, user);
+	//});
+});
+
+passport.use(new localStrategy(		//	registrate 'local' Strategy
+	function(username, password, done){
+		var uname = username;
+		var pwd = password;
+		var user;
+		
+		for(var i = 0; i < users.length; i++){
+		
+			user = users[i];
+		
+			if(uname == user['username']){
+				return hasher({password:pwd, salt:user['salt']}, function(err, pass, salt, hash){
+					if(hash == user['password']){
+						console.log('localStrategy', user);
+						done(null, user);
+						//	cf.) done(err);		//	for error handling
+						//req.session.nickname = user.nickname;
+						//req.session.save(function(){
+						//	res.redirect('/welcome');
+						//});
+					}
+					else{
+						done(null, false);
+						//res.send('Incorrect user information. <a href="/auth/login">login</a>');
+					}
+				});
+			}
+		}
+		
+		done(null, false);
+		//res.send('Incorrect user information. <a href="/auth/login">login</a>');
+	}
+));
+
 var users = [
 	{
 		username: 'quanto',
@@ -63,32 +115,43 @@ app.get('/auth/login', function(req, res){
 	res.send(output);
 });
 
-app.post('/auth/login', function(req, res){
-	var uname = req.body.username;
-	var pwd = req.body.password;
-	var user;
+//app.post('/auth/login', function(req, res){
+//	var uname = req.body.username;
+//	var pwd = req.body.password;
+//	var user;
+//
+//	for(var i = 0; i < users.length; i++){
+//
+//		user = users[i];
+//
+//		if(uname == user['username']){
+//			return hasher({password:pwd, salt:user['salt']}, function(err, pass, salt, hash){
+//				if(hash == user['password']){
+//					req.session.nickname = user.nickname;
+//					req.session.save(function(){
+//						res.redirect('/welcome');
+//					});
+//				}
+//				else{
+//					res.send('Incorrect user information. <a href="/auth/login">login</a>');
+//				}
+//			});
+//		}
+//	}
+//
+//	res.send('Incorrect user information. <a href="/auth/login">login</a>');
+//});
 
-	for(var i = 0; i < users.length; i++){
-
-		user = users[i];
-
-		if(uname == user['username']){
-			return hasher({password:pwd, salt:user['salt']}, function(err, pass, salt, hash){
-				if(hash == user['password']){
-					req.session.nickname = user.nickname;
-					req.session.save(function(){
-						res.redirect('/welcome');
-					});
-				}
-				else{
-					res.send('Incorrect user information. <a href="/auth/login">login</a>');
-				}
-			});
-		}
+app.post('/auth/login', passport.authenticate('local', {	//	execute 'local' Strategy
+	sucessRedirect: '/welcome',
+	failureRedirect: '/auth/login',
+	failureFlash: false		//	give one time message to user
+	}),
+	function(req, res){
+//		console.log('app.post - /auth/login');
+		res.redirect('/welcome');
 	}
-
-	res.send('Incorrect user information. <a href="/auth/login">login</a>');
-});
+);
 
 app.get('/welcome', function(req, res){
 	//res.send(req.session);

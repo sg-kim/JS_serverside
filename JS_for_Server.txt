@@ -783,4 +783,6 @@ app.use(passport.initialize());
 app.use(passport.session());	//	use 'session' method when using passport
 ※ passport session 설정 'app.use(passport.session());'은 session 기본 설정이 끝난 후에 설정하여야 한다.
 
+- Strategy: 각각의 방법으로 로그인 하는 방법
+
 
