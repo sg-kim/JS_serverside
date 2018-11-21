@@ -789,4 +789,88 @@ app.use(passport.session());	//	use 'session' method when using passport
 
 - Strategy: 각각의 방법으로 로그인 하는 방법
 
+① passport 모듈을 include한다
+
+예) var passport = require('passport');
+
+
+② local strategy를 include한다
+
+예) var localStrategy = require('passport-local').Strategy;
+※ local strategy를 사용하기 위해서는 NPM의 'passport-local' 모듈을 설치해야 한다.
+
+
+③ local strategy를 구현한다
+
+passport.use(new localStrategy(
+	function(username, password, done){
+		var uname = username;
+		var pwd = password;
+		var user;
+
+		for(var i = 0; i < users.length; i++){
+			user = users[i];
+
+			if(uname == user['username']){
+				return hasher({password:pwd, salt:user['salt']}, function(err, pass, salt, hash){
+					if(hash == user['password']){
+						console.log('localStrategy', user);
+						done(null, user);	//	hand over user data to the done function
+						//	cf.) done(err);		//	for error handling
+					}
+					else{
+						done(null, false);
+					}
+				});
+			}
+		}
+
+		done(null, false);		//	no matching user in the user list
+	}
+));
+
+④ login 기능의 post 방식 데이터 처리 방법을 구현한다
+
+//	execute 'local' strategy
+//	'failureFlash': instant message that notifies login failure to a user
+app.post('/auth/login', passport.authenticate('local', {
+		successRedirect: '/welcome',
+		failureRedirect: '/auth/login',
+		failureFalsh: false
+	})
+);
+
+
+⑤ passport의 serializer, deserializer를 구현한다
+
+passport.serializeUser(function(user, done){
+	console.log('serializeUser', user);
+	done(null, user['username']);		//	store user name into a session
+});
+
+//	this function is called whenever user visits new pages
+passport.deserializeUser(function(id, done){
+	console.log('deserializeUser', id);
+	for(var i = 0; i < users.length; i++){
+		var user = users[i];
+		if(user['username'] == id){
+			return done(null, user);
+		}
+	}
+});
+
+login 할 때 serializeUser함수가 실행되면서 session이 형성되고, 이후 page request가 있을 때 마다 cookie의 session id를 이용해서 user가 connect되어 있는지 확인할 수 있다.
+
+⑥ logout
+
+app.get('/auth/logout', function(req, res){
+	req.logout();
+	req.session.save(function(){
+		res.redirect('/welcome');
+	});
+});
+
+logout() 함수를 호출해서 seesion을 지우고, 이 과정을 마치면(.save) 첫 페이지(/welcome)로 돌아간다.
+
+
 

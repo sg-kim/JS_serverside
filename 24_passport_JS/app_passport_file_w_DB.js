@@ -1,7 +1,9 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
-var mysql = require('mysql');
+//var mysql = require('mysql');
+var session = require('express-session');
+var mysqlStore = require('express-mysql-session')(session);
 
 //	module for save session data into file
 var fileStore = require('session-file-store')(session);
@@ -9,11 +11,11 @@ var fileStore = require('session-file-store')(session);
 //	modules for password security, sha256 algorithm and pbkdf2 method
 var sha256 = require('sha256');
 var bkfd2Password = require('pbkdf2-password');
+var hasher = bkfd2Password();
 
 //	passport module, strategy and hash function for integrated login control
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
-var hasher = bkfd2Password();
 
 var app = express();
 
@@ -37,12 +39,18 @@ app.use(session({
 	secret: '2sxk589x#@0sklk@!kxj24',
 	resave: false,
 	saveUninitialized: true,
-	store: new fileStore()
+	store: new mysqlStore({
+		host: 'localhost',
+		port: 3306,
+		user: 'root',
+		password: 'heybuddy01',
+		database: 'alpha'
+	})
 })
 );
 
 //	initialize passport
-app.use(passport.initialized());
+app.use(passport.initialize());
 //	this app uses session function in the passport integrated login control
 app.use(passport.session());
 
@@ -55,7 +63,7 @@ passport.serializeUser(function(user, done){
 	done(null, user['username']);		//	store user name into a session
 });
 
-//	this function called whenever user visits new pages
+//	this function is called whenever user visits new pages
 passport.deserializeUser(function(id, done){
 	console.log('deserializeUser', id);
 	for(var i = 0; i < users.length; i++){
@@ -73,18 +81,20 @@ passport.use(new localStrategy(
 		var pwd = password;
 		var user;
 
-		for(var i = 0; i < user.length; i++){
+		for(var i = 0; i < users.length; i++){
 			user = users[i];
 
 			if(uname == user['username']){
 				return hasher({password:pwd, salt:user['salt']}, function(err, pass, salt, hash){
-					console.log('localStrategy', user);
-					done(null, user);	//	hand over user data to the done function
-					//	cf.) done(err);		//	for error handling
+					if(hash == user['password']){
+						console.log('localStrategy', user);
+						done(null, user);	//	hand over user data to the done function
+						//	cf.) done(err);		//	for error handling
+					}
+					else{
+						done(null, false);
+					}
 				});
-			}
-			else{
-				done(null, false);
 			}
 		}
 
@@ -143,12 +153,14 @@ app.post('/auth/login', passport.authenticate('local', {
 app.get('/welcome', function(req, res){
 	if(req.user && req.user.nickname){
 	// passport module creates 'user' object in the 'req' object after doing 'local' strategy
+		console.log('/welcome - login success');
 		res.send(`
 			<h1>Hello, ${req.user.nickname}</h1>
 			<a href="/auth/logout">Logout</a>
 		`);
 	}
 	else{
+		console.log('/welcome - login fails');
 		res.send(`
 			<h1>Welcome</h1>
 			<p>
@@ -189,6 +201,30 @@ app.get('/auth/register', function(req, res){
 
 	res.send(output);
 });
+
+app.post('/auth/register', function(req, res){
+	var uname = req.body.username;
+	var passwd = req.body.password;
+	var nickname = req.body.nickname;
+
+	hasher({password:passwd}, function(err, pass, salt, hash){
+		var user = {
+			username:uname,
+			password:hash,
+			salt:salt,
+			nickname:nickname
+		};
+
+		users.push(user);
+
+		req.login(user, function(err){
+			req.session.save(function(){
+				res.redirect('/welcome');
+			});
+		});
+	});
+});
+
 
 //app.get('/topic/add', function(req, res){
 //	var sql = 'SELECT * FROM topic';
