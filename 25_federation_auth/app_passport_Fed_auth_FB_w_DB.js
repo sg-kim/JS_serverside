@@ -61,7 +61,8 @@ app.listen(3006, function(){
 
 passport.serializeUser(function(user, done){
 	console.log('serializeUser', user);
-	done(null, user['username']);		//	store user name into a session
+	//done(null, user['username']);		//	store user name into a session
+	done(null, user['authId']);		//	store user name into a session
 });
 
 //	this function is called whenever user visits new pages
@@ -69,11 +70,13 @@ passport.deserializeUser(function(id, done){
 	console.log('deserializeUser', id);
 	for(var i = 0; i < users.length; i++){
 		var user = users[i];
-		if(user['username'] == id){
+		//if(user['username'] == id){
+		if(user['authId'] == id){
 			//	done function creates or update req.user object, which include user specific data
 			return done(null, user);
 		}
 	}
+	done('No matching user.');
 });
 
 //	register local strategy for passport
@@ -109,24 +112,42 @@ passport.use(new facebookStrategy({
 	clientID: FACEBOOK_APP_ID,
 	clientSecret: FACEBOOK_APP_SECRET,
 	//callbackURL: "http://www.example.com/auth/facebook/callback"
-	callbackURL: "/auth/facebook/callback"
+	callbackURL: "/auth/facebook/callback",
+	//profileFields:['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified', 'displayName']
 	},
 	function(accessToken, refreshToken, profile, done){
-		User.findOrCreate(..., function(err, user){
-			if(err){
-				return done(err);
+		console.log(profile);
+		var authId = 'facebook:' + profile['id'];
+		for(var i = 0; i < users.length; i++){
+			user = users[i];
+
+			if(user.authId == authId){
+				return done(null, user);
 			}
-			else{
-				done(null, user);
-			}
-		});
-	}
-})
+		}
+		var newuser = {
+			'authId':authId,
+			'nickname':profile['displayName']
+			//, 'email': profile['emails'][0]['value']
+			//, 'email': profile.emails[0].value
+		}
+		users.push(newuser);
+		done(null, newuser);
+		//User.findOrCreate(..., function(err, user){
+		//	if(err){
+		//		return done(err);
+		//	}
+		//	else{
+		//		done(null, user);
+		//	}
+		//});
+	})
 );
 
 //	user data for exercise
 var users = [
 	{
+		authId:'local:quanto',
 		username: 'quanto',
 		//password: '698d51a19d8a121ce581499d7b701668',
 		password: 'ANMgKiCz/cCf8e++Iy6UgvRJzE+GfQz4y1H/vU5CTMzUqPfBIoA/+YKzVCZINCrLrbc3so6ladYQe/Pt9rZLoHbdktvgyrm9a0HxMlpV+er6KbrNUyyRdvYucIYh/TbXTR8uOyKo6QftjjbGYEBDqLEL0dL8fFxH5JqZjIDmfFE=',
@@ -134,6 +155,7 @@ var users = [
 		nickname: 'Balup zergling'
 	},
 	{
+		authId:'local:reizel',
 		username: 'reizel',
 		//password: '698d51a19d8a121ce581499d7b701668',
 		password: 'kGPOd9BRF/qNI8mqThdQ4rteR05WUHdCUoB9WhZOINNDDOAie7XYJWEiZUv48Kv1Qx0XdcuyP1dbu2uhu/J58reoyVVX1E0Kcf63ymXbVdTSiyQ9eiGh1Z1YLigUM05pqXoZw76Ni/Ax6NuSvcE6AmKn5Ls8UAw7CGz0sxzsH+0=',
@@ -176,6 +198,9 @@ app.post('/auth/login', passport.authenticate('local', {
 //	execute 'facebook' strategy
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
+//app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
+
+//	FaceBook calls this url
 app.get('/auth/facebook/callback', passport.authenticate(
 		'facebook', {
 				successRedirect: '/welcome',
@@ -243,6 +268,7 @@ app.post('/auth/register', function(req, res){
 
 	hasher({password:passwd}, function(err, pass, salt, hash){
 		var user = {
+			authId:'local:' + req.body.username,
 			username:uname,
 			password:hash,
 			salt:salt,

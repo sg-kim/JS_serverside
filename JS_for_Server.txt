@@ -896,16 +896,29 @@ logout() 함수를 호출해서 seesion을 지우고, 이 과정을 마치면(.save) 첫 페이지(/we
 
 ① developers.facebook.com에 방문해서 앱을 만들고 설정한다. 연습용 site인 경우 URL에 'localhost:port#'로 입력하면 된다.
 
-② passport strategy를 설치한다.
+앱 생성 결과로 ID와 secret이 만들어지고, 기관 인증을 위해 이 두 식별자가 사용된다.
+
+
+② passport strategy NPM을 설치한다.
 
 $> npm install passport-facebook --save
 
+
 ③ facebook strategy router를 만든다
+
+사용자가 '/auth/facebook' URL에 접근하면 'facebook' strategy를 실행한다.
 
 //	execute 'facebook' strategy
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
-사용자가 '/auth/facebook' URL에 접근하면 'facebook' strategy를 실행한다.
+추가적인 정보가 필요하면 'scope' property를 추가한다.
+ 
+app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
+
+scope에 명시된 value가 있으면 facebook strategy 구현 안에 facebook에서 가져올 field들을 명시해 주어야한다.
+
+예) profileFields:['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified', 'displayName']
+
 
 ④ facebook startegy를 구현한다
 
@@ -916,40 +929,97 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 		callbackURL: "http://www.example.com/auth/facebook/callback"
 	},
 		function(accessToken, refreshToken, profile, done){
-			User.findOrCreate(..., function(err, user){
-				if(err){
-					return done(err);
+			console.log(profile);
+			var authId = 'facebook:' + profile['id'];
+			for(var i = 0; i < users.length; i++){
+				user = users[i];
+
+				if(user.authId == authId){
+					return done(null, user);
 				}
-				else{
-					done(null, user);
-				}
-			});
+			}
+			var newuser = {
+				'authId':authId,
+				'nickname':profile['displayName']
+			}
+			users.push(newuser);
+			done(null, newuser);
 		}
 	})
 );
 
 facebook strategy는 몇 가지 정보를 담아서 facebook에 보낸다.
+그리고 facebook이 호출하여 실행시킬 callback 함수를 등록한다. 이 callback 함수는 DB에 user data가 있는지 확인하고, 있다면 user data를 serializer로 보내고(done(null, user)), 없다면 DB에 새로 등록하고 새로 등록한 user data를 serializer로 보낸다(done(null, newuser)).
 
 
 ⑤ facebook callback URL을 설정하고 router를 구현한다.
 
-//	register passport strategy for passport
-	passport.use(new facebookStrategy({
-		clientID: FACEBOOK_APP_ID,
-		clientSecret: FACEBOOK_APP_SECRET,
-		//callbackURL: "http://www.example.com/auth/facebook/callback"
-		callbackURL: "/auth/facebook/callback"
-	},
-	function(accessToken, refreshToken, profile, done){
-		...
-	}
-})
+//	FaceBook calls this url
+app.get('/auth/facebook/callback', passport.authenticate(
+	'facebook', {
+		successRedirect: '/welcome',
+		failureRedirect: '/auth/login'
+	})
 );
 
 facebook callbackURL에는 facebook이 사용자 정보를 담아서 보낼 때 호출할 당신 웹 사이트의 주소를 적어주어야 한다.
+facebook strategy가 활성화 되었을 때 facebook은 facebook strategy에 들어있는 callback 함수를 실행시키고 callbackURL을 호출한다.
 
 
-⑥
+⑥ session을 통해 user data를 관리할 serializer, deserializer 함수를 구현한다.
+
+session에 user.['authId']를 기록한다.
+
+passport.serializeUser(function(user, done){
+	console.log('serializeUser', user);
+	//done(null, user['username']);		//	store user name into a session
+	done(null, user.['authId']);		//	store user name into a session
+});
+
+session에 기록되어 있는 id값(done(null, user.['authId'])이 DB에 있는 사용자의 것과 같다면 req객체에 user객체를 생성하거나, 이미 생성되어 있으면 update한다.
+
+//	this function is called whenever user visits new pages
+passport.deserializeUser(function(id, done){
+	console.log('deserializeUser', id);
+	for(var i = 0; i < users.length; i++){
+		var user = users[i];
+		//if(user['username'] == id){
+		if(user['authId'] == id){
+			//	done function creates or update req.user object, which include user specific data
+			return done(null, user);
+		}
+	}
+});
 
 
+⑦ 사용자 인증의 결과인 successRedirect, failureRedirect target을 구현한다.
+
+여기서는 아래의 target들을 대상으로 하였다.
+{successRedirect: '/welcome', failureRedirect: '/auth/login'}
+
+req객체에 user 객체가 만들어졌는지, 그리고 user객체 안에 nickname field가 있는지 확인하여 사용자가 로그인 상태인지 판단한다.
+
+app.get('/welcome', function(req, res){
+	// passport module creates 'user' object in the 'req' object after doing 'local' strategy
+	// the req.user comes from 'done(null, user)' in the deserializeUser function
+	if(req.user && req.user.nickname){
+		console.log('/welcome - login success');
+		res.send(`
+			<h1>Hello, ${req.user.nickname}</h1>
+			<a href="/auth/logout">Logout</a>
+		`);
+	}
+	else{
+		console.log('/welcome - login fails');
+		res.send(`
+			<h1>Welcome</h1>
+			<p>
+				<a href="/auth/login">Login</a>
+			</p>
+			<p>
+				<a href="/auth/register">Register</a>
+			</p>
+		`);
+	}
+});
 
