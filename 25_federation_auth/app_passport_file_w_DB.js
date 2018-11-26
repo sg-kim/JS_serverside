@@ -16,6 +16,7 @@ var hasher = bkfd2Password();
 //	passport module, strategy and hash function for integrated login control
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
+var facebookStrategy = require('passport-facebook').Strategy;
 
 var app = express();
 
@@ -103,6 +104,26 @@ passport.use(new localStrategy(
 	}
 ));
 
+//	register passport strategy for passport
+passport.use(new facebookStrategy({
+	clientID: FACEBOOK_APP_ID,
+	clientSecret: FACEBOOK_APP_SECRET,
+	//callbackURL: "http://www.example.com/auth/facebook/callback"
+	callbackURL: "/auth/facebook/callback"
+	},
+	function(accessToken, refreshToken, profile, done){
+		User.findOrCreate(..., function(err, user){
+			if(err){
+				return done(err);
+			}
+			else{
+				done(null, user);
+			}
+		});
+	}
+})
+);
+
 //	user data for exercise
 var users = [
 	{
@@ -137,6 +158,7 @@ app.get('/auth/login', function(req, res){
 				<input type="submit">
 			</p>
 		</form>
+	<a href="/auth/facebook">Facebook</a>
 	`;
 
 	res.send(output);
@@ -149,6 +171,16 @@ app.post('/auth/login', passport.authenticate('local', {
 		failureRedirect: '/auth/login',
 		failureFalsh: false
 	})
+);
+
+//	execute 'facebook' strategy
+app.get('/auth/facebook', passport.authenticate('facebook'));
+
+app.get('/auth/facebook/callback', passport.authenticate(
+		'facebook', {
+				successRedirect: '/welcome',
+				failureRedirect: '/auth/login'
+		})
 );
 
 app.get('/welcome', function(req, res){
