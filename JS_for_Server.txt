@@ -923,29 +923,29 @@ scope에 명시된 value가 있으면 facebook strategy 구현 안에 facebook에서 가져올 fi
 ④ facebook startegy를 구현한다
 
 //	register passport strategy for passport
-	passport.use(new facebookStrategy({
-		clientID: FACEBOOK_APP_ID,
-		clientSecret: FACEBOOK_APP_SECRET,
-		callbackURL: "http://www.example.com/auth/facebook/callback"
+passport.use(new facebookStrategy({
+	clientID: FACEBOOK_APP_ID,
+	clientSecret: FACEBOOK_APP_SECRET,
+	callbackURL: "http://www.example.com/auth/facebook/callback"
 	},
-		function(accessToken, refreshToken, profile, done){
-			console.log(profile);
-			var authId = 'facebook:' + profile['id'];
-			for(var i = 0; i < users.length; i++){
-				user = users[i];
+	function(accessToken, refreshToken, profile, done){
+		console.log(profile);
+		var authId = 'facebook:' + profile['id'];
+		for(var i = 0; i < users.length; i++){
+			user = users[i];
 
-				if(user.authId == authId){
-					return done(null, user);
-				}
+			if(user.authId == authId){
+				return done(null, user);
 			}
-			var newuser = {
-				'authId':authId,
-				'nickname':profile['displayName']
-			}
-			users.push(newuser);
-			done(null, newuser);
 		}
-	})
+		var newuser = {
+			'authId':authId,
+			'nickname':profile['displayName']
+		}
+		users.push(newuser);
+		done(null, newuser);
+	}
+})
 );
 
 facebook strategy는 몇 가지 정보를 담아서 facebook에 보낸다.
@@ -1022,4 +1022,26 @@ app.get('/welcome', function(req, res){
 		`);
 	}
 });
+
+★ passport와 passport strategy를 통한 authentication과정을 요약하면 아래와 같다.
+
+① app.get('/auth/facebook', passport.authenticate('facebook'));
+
+② passport.use(new facebookStrategy({...})); facebook strategy 실행
+
+③ facebook이 facebookStrategy의 callback 함수 실행
+
+④ callback함수의 'done(null, user)' 함수 실행
+
+⑤ passport.serializeUser 함수를 통해 session 형성
+
+⑥ app.get('/auth/facebook/callback', passport.authenticate(...); 함수 내의 success/failure Redirect URL 접근
+
+⑦ redirect URL을 통해 새로운 page에 접근하면서 passport.deserializeUser(...); 함수 실행
+
+⑧ passport.deserializeUser(...); 함수의 done(null, user)함수가 실행되면서 req.user 객체 생성 or 갱신
+
+⑨ 각 page들은 req.user 객체와 그 멤버들을 통해 session의 유지 여부 및 session data를 사용할 수 있다.
+
+
 

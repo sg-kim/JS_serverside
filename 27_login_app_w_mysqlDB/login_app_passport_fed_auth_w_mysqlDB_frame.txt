@@ -1,0 +1,20 @@
+
+app.get('/auth/login')
+	app.post('/auth/login')
+	a href = app.get('/auth/facebook')
+app.get('/auth/facebook')
+	passport.use(new facebookStrategy)
+app.get('/auth/facebook/callback')
+	successRedirect: '/welcome'
+	failureRedirect: '/auth/login'
+app.get('/welcome')
+	a href = app.get('/auth/logout')
+	a href = app.get('/auth/login')
+	a href = app.get('/auth/register')
+app.get('/auth/logout')
+	redirect('/welcome')
+app.get('/auth/register')
+	app.post('/auth/register')
+app.post('/auth/register')
+	redirect('/welcome')
+
