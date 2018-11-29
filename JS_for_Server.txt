@@ -1045,3 +1045,65 @@ app.get('/welcome', function(req, res){
 
 
 
+◎ Jade
+
+Jade extends - 상속
+
+Jade HTML document generator engine의 장점은 단순히 express와 맞물려 HTML을 동적으로 생성해 주는 것 만은 아니다. 상속(extends), 포함(indlude) 등의 기능을 이용해서 template document의 내용을 확장하거나 각 개별 document에 tamplate  document의 내용을 포함시켜서 각 개별 document를 확장 시킬 수 있다.
+
+○ extends: template document의 내용을 확장시킨다
+
+예)
+
+- template.jade
+
+html
+	head
+	body
+		ul
+			li JaveScript
+			li nodejs
+			li expressjs
+		article 
+			block content
+
+- view.jade
+
+extends ./layout
+block content
+	| JavaScript is ...
+
+
+- add.jade
+
+html
+extends ./layout
+block content
+	form
+		input(type="text")
+		input(type="submit")
+
+
+view.jade, add.jade가 template의 'block content'영역을 확장시키고 있다.
+
+
+○ include: 각 개별 document에 tamplate  document의 내용을 포함시켜서 각 개별 document를 확장시킨다
+
+- head.jade
+
+head
+	title My Site
+	script(src='/javascripts/jquery.js')
+	script(src='/javascripts/app.js')
+
+- index.jade
+
+doctype html
+html
+	include ./include/head.jade
+	body
+		h1 My Site
+		p Welcome to my super lame site.
+
+head.jade 파일을 이용하여 index.jade 파일을 확장시키고 있다.
+

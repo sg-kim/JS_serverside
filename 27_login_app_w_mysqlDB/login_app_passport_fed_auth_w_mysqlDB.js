@@ -76,7 +76,8 @@ passport.deserializeUser(function(id, done){
 			//console.log(row[0]['nickname']);
 			var user = row[0];
 
-			if(user){
+			//if(user){
+			if(row.length > 0){
 				return done(null, row[0]);
 			}
 			else{
@@ -105,7 +106,8 @@ passport.use(new localStrategy(
 				else{
 					user = row[0];
 
-					if(user){
+					//if(user){
+					if(row.length > 0){
 						return hasher({password:pwd, salt:user['salt']}, function(err, pass, salt, hash){
 							if(hash == user['password']){
 								console.log('localStrategy', user);
@@ -145,7 +147,8 @@ passport.use(new facebookStrategy({
 				}
 				else{
 					var user = row[0];
-					if(user){
+					//if(user){
+					if(row.length > 0){
 						done(null, user);
 					}
 					else{
@@ -161,6 +164,7 @@ passport.use(new facebookStrategy({
 							if(err){
 								console.log(err);
 								res.status(500).send('Internal Server Error');
+								done('Error');
 							}
 							else{
 								done(null, user);
