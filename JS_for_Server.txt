@@ -1176,3 +1176,5 @@ module.exports = function(express){
 
 ◎ CRUD and Auth - more secure and personalized app 
 
+※ 예제 code의 복잡도를 낮추기 위해서 db, express, passport setup, 그리고 router 구현을 module화 방법을 사용하여 별도의 파일로 분리하였다(31_Authenticated_CRUD).
+
