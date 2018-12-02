@@ -13,7 +13,7 @@ module.exports = function(){
 				console.log(err);
 			}
 			else{
-				res.render('topic/add', {topics:rows});
+				res.render('topic/add', {topics:rows, user:req.user});
 			}
 		});
 	});
@@ -61,7 +61,7 @@ module.exports = function(){
 							res.status(500).send('Internal Server Error');
 						}
 						else{
-							res.render('topic/view', {topics:rows, topic:row[0]});
+							res.render('topic/view', {topics:rows, topic:row[0], user:req.user});
 						}
 					});
 				}
@@ -74,7 +74,7 @@ module.exports = function(){
 					res.status(500).send('Internal Server Error');
 				}
 				else{
-					res.render('topic/view', {topics:rows});
+					res.render('topic/view', {topics:rows, user:req.user});
 				}
 			});
 		}
@@ -102,7 +102,7 @@ module.exports = function(){
 						res.status(500).send('Internal Server Error');
 					}
 					else{
-						res.render('topic/edit', {topics:rows, topic:row[0]});
+						res.render('topic/edit', {topics:rows, topic:row[0], user:req.user});
 					}
 				});
 			}
@@ -155,7 +155,7 @@ module.exports = function(){
 							res.status(500).send('Internal Server Error');
 						}
 						else{
-							res.render('topic/delete', {topics:rows, topic:row[0]});
+							res.render('topic/delete', {topics:rows, topic:row[0], user:req.user});
 						}
 					}
 				});

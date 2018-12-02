@@ -6,13 +6,20 @@ module.exports = function(passport){
 
 	var route = require('express').Router();
 	
+	var conn = require('../externals/db.js')();
+	
 	route.get('/login', function(req, res){
-		res.render('auth/login');
+		var sql = 'SELECT * FROM topic';
+	
+		conn.query(sql, function(err, rows, fields){
+			res.render('auth/login', {topics:rows});
+		});
 	});
 	
 	//	execute 'local' strategy
 	route.post('/login', passport.authenticate('local', {
-			successRedirect: '/welcome',
+			//successRedirect: '/welcome',
+			successRedirect: '/topic',
 			failureRedirect: '/auth/login',
 			failureFalsh: false
 		})
@@ -32,12 +39,17 @@ module.exports = function(passport){
 	route.get('/logout', function(req, res){
 		req.logout();
 		req.session.save(function(){
-			res.redirect('/welcome');
+			//res.redirect('/welcome');
+			res.redirect('/topic');
 		});
 	});
 	
 	route.get('/register', function(req, res){
-		res.render('auth/register.jade');
+		var sql = 'SELECT * FROM topic';
+	
+		conn.query(sql, function(err, rows, fields){
+			res.render('auth/register.jade', {topics:rows});
+		});
 	});
 	
 	route.post('/register', function(req, res){
