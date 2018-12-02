@@ -1123,9 +1123,56 @@ module.exports.'function name' = function(args ...){
 예)
 var calc = require('./lib/calculator');
 
-
-
 console.log('calc.sum', calc.sum(1, 2));
 
 console.log('calc.avg', calc.avg(1, 2));
+
+
+◎ Router separation using module concept
+
+module의 한 가지 장점(이자 단점)은 파일로 분리된 object를 만들 수 있는 것이다. 이 개념을 잘 이용하면 여러 개의 파일들을 이용하여 프로젝트 관리의 용이성을 높일 수 있다.
+
+예를 들어 아래와 같은 routing path를 갖는 web page가 있다고 하자.
+
+/p1/r1
+/p1/r2
+
+/p2/r1
+/p2/r2
+
+이전 예제 까지는 모든 routing path를 하나의 파일 안에 기록했었다. 하지만 각각의 routing path가 독립되어 있고 서로 관계가 없다면 이들을 module화 하여 별도의 파일로 분리하여 관리하는것이 편리하다.
+
+예)
+
+- app_route.js
+
+var express = require('express');
+var app = express();
+
+var p1 = require('./p1')(express);
+var p2 = require('./p2')(express);
+
+app.use('/p1', p1);
+app.use('/p2', p2);
+
+app.listen(3008, function(){
+	console.log('connected to 3008 port.');
+});
+
+- p1.js
+
+module.exports = function(express){
+	var p1 = express.Router();
+	p1.get('/r1', function(req, res){
+		res.send('Hello, /p1/r1');
+	});
+	p1.get('/r2', function(req, res){
+		res.send('Hello, /p1/r2');
+	});
+
+	return p1;
+}
+
+
+◎ CRUD and Auth - more secure and personalized app 
 
