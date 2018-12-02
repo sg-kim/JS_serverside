@@ -1,0 +1,20 @@
+extends ../topic_header
+block content
+	article
+		if topic
+			h2= topic['title']
+			= topic['description']
+			div= 'by ' + topic['author']
+		else
+			h2 Welcome
+			| Server side Javascript tutorial w/ mySQL.
+	ul
+		li
+			a(href='/topic/add') add
+		if topic
+			- id = topic['id']
+			li
+				a(href='/topic/' + id + '/edit') edit
+			li
+				a(href='/topic/' + id + '/delete') delete
+
