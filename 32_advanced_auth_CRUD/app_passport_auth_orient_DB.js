@@ -3,7 +3,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var orientoStore = require('connect-oriento')(session);
-var OrientDB = require('orientjs');
 
 //	module for save session data into file
 var fileStore = require('session-file-store')(session);
@@ -20,13 +19,7 @@ var facebookStrategy = require('passport-facebook').Strategy;
 
 var app = express();
 
-var server = OrientDB({
-	host: 'localhost',
-	port: 2424,
-	username: 'root',
-	password: '8087'
-});
-var db = server.use('alpha');
+var db = require('./externals/db.js')();
 
 app.set('view engine', 'jade');
 app.set('views', './view_files');
@@ -63,7 +56,7 @@ passport.serializeUser(function(user, done){
 //	this function is called whenever user visits new pages
 passport.deserializeUser(function(id, done){
 	console.log('deserializeUser', id);
-	var sql = 'SELECT nickname FROM user WHERE authId:authId';
+	var sql = 'SELECT nickname FROM user WHERE authId=:authId';
 	db.query(sql, {params:{authId:id}}).then(function(results){
 		if(results.length == 0){
 			done('There is no user.');
@@ -189,31 +182,8 @@ var users = [
 
 //	Routers
 
-app.get('/auth/login', function(req, res){
-	res.render('auth/login');
-});
-
-//	execute 'local' strategy
-//	'failureFlash': instant message that notifies login failure to a user
-app.post('/auth/login', passport.authenticate('local', {
-		successRedirect: '/welcome',
-		failureRedirect: '/auth/login',
-		failureFalsh: false
-	})
-);
-
-//	execute 'facebook' strategy
-app.get('/auth/facebook', passport.authenticate('facebook'));
-
-//app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
-
-//	FaceBook calls this url
-app.get('/auth/facebook/callback', passport.authenticate(
-		'facebook', {
-				successRedirect: '/welcome',
-				failureRedirect: '/auth/login'
-		})
-);
+var auth = require('./routes/auth.js')(passport);
+app.use('/auth', auth);
 
 app.get('/welcome', function(req, res){
 	// passport module creates 'user' object in the 'req' object after doing 'local' strategy
@@ -237,48 +207,6 @@ app.get('/welcome', function(req, res){
 			</p>
 		`);
 	}
-});
-
-app.get('/auth/logout', function(req, res){
-	req.logout();
-	req.session.save(function(){
-		res.redirect('/welcome');
-	});
-});
-
-app.get('/auth/register', function(req, res){
-	res.render('auth/register');
-});
-
-app.post('/auth/register', function(req, res){
-	var uname = req.body.username;
-	var passwd = req.body.password;
-	var nickname = req.body.nickname;
-
-	hasher({password:passwd}, function(err, pass, salt, hash){
-		var user = {
-			authId:'local:' + req.body.username,
-			username:uname,
-			password:hash,
-			salt:salt,
-			nickname:nickname
-		};
-
-		var sql = 'INSERT INTO user (authId, username, password, salt, nickname) VALUES(:authId, :username, :password, :salt, :nickname)'; 
-
-		db.query(sql, {
-			params:user
-		}).then(function(results){
-			req.login(user, function(err){
-				req.session.save(function(){
-					res.redirect('/welcome');
-				});
-			});
-		}, function(error){
-			console.log(error);
-			res.status(500);
-		});
-	});
 });
 
 
