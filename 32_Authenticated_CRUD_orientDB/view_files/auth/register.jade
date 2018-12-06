@@ -1,0 +1,17 @@
+extends ../topic_header
+block content
+	h1 Register
+	| &#x9;&#x9;
+	form(action='/auth/register', method='post')
+		p
+			input(type='text', name='username', placeholder='username')
+			| &#x9;&#x9;&#x9;
+		p
+			input(type='password', name='password', placeholder='password')
+			| &#x9;&#x9;&#x9;
+		p
+			input(type='text', name='nickname', placeholder='nickname')
+			| &#x9;&#x9;&#x9;
+		p
+			input(type='submit')
+

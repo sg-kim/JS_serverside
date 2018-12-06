@@ -1,0 +1,16 @@
+extends ../topic_header
+block content
+	article
+		h2= 'Delete? ' + topic['title']
+		- rid = encodeURIComponent(topic['@rid'])
+		form(action='/topic/' + rid + '/delete' method='post')
+			p
+				input(type='text' name='title' placeholder='title' value=topic['title'])
+			p
+				textarea(name='description' placeholder='description')
+					=topic['description']
+			p
+				input(type='text' name='author' placeholder='author' value=topic['author'])
+			p
+				input(type='submit' value='Yes')
+		a(href='/topic/'+rid) No
