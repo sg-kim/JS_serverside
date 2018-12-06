@@ -775,6 +775,19 @@ hasher({password:passwd}, function(err, pass, salt, hash){
 
 ◎ Passport JS
 
+※ 이제부터 DB에 아래와 같은 column들을 생성하여 사용자 데이터를 저장할 것이다.
+
+mysql> create table users(
+	id INT NOT NULL AUTO_INCREMENT,
+	authId VARCHAR(50) NOT NULL,
+	username VARCHAR(30),
+	password VARCHAR(255),
+	salt VARCHAR(255),
+	displayName VARCHAR(50),
+	PRIMARY KEY(id),
+	UNIQUE (authId)
+	) ENGINE = InnoDB;
+
 인증(authentication)을 쉽게 구현할 수 있도록 도와주는 package
 
 Federation authentication: 외부의 공신력있는 단체의 로그인 정보를 이용하여 특정 site의 로그인을 도와 주는 것
