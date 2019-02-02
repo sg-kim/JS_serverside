@@ -1,49 +1,49 @@
-¡İ NPM(Nodejs Package Manager)
+ï»¿â— NPM(Nodejs Package Manager)
 
-¡Û ¼³Ä¡, ¼³Ä¡µÈ package È®ÀÎ
+â—‹ ì„¤ì¹˜, ì„¤ì¹˜ëœ package í™•ì¸
 
 $>npm install ${package name} -g or npm install ${package name}
 
 $>npm ls -g or npm ls
 
-¿¹ 1) npm install uglify-js -g
-¸ğµç node.js ÇÁ·ÎÁ§Æ®µéÀÌ ÇØ´ç package¸¦ »ç¿ëÇÒ ¼ö ÀÖµµ·Ï ¼³Ä¡
-¡Ø uglify´Â °ø¹é¹®ÀÚ¸¦ Á¦°ÅÇÏ¿© min.js¸¦ ¸¸µé¾î ÁØ´Ù.
+ì˜ˆ 1) npm install uglify-js -g
+ëª¨ë“  node.js í”„ë¡œì íŠ¸ë“¤ì´ í•´ë‹¹ packageë¥¼ ì‚¬ìš©í•  ìˆ˜ ìˆë„ë¡ ì„¤ì¹˜
+â€» uglifyëŠ” ê³µë°±ë¬¸ìë¥¼ ì œê±°í•˜ì—¬ min.jsë¥¼ ë§Œë“¤ì–´ ì¤€ë‹¤.
 
-¿¹ 2) npm install underscore
-Æ¯Á¤ ÇÁ·ÎÁ§Æ® µğ·ºÅä¸® ³»¿¡ package¸¦ ¼³Ä¡
-¡Ø underscore´Â array¸¦ handlingÇÏ´Â Æí¸®ÇÑ ¸Ş¼ÒµåµéÀ» Á¦°øÇÑ´Ù.
+ì˜ˆ 2) npm install underscore
+íŠ¹ì • í”„ë¡œì íŠ¸ ë””ë ‰í† ë¦¬ ë‚´ì— packageë¥¼ ì„¤ì¹˜
+â€» underscoreëŠ” arrayë¥¼ handlingí•˜ëŠ” í¸ë¦¬í•œ ë©”ì†Œë“œë“¤ì„ ì œê³µí•œë‹¤.
 
-¡Ø --save option: NPMµé °£¿¡´Â ÀÇÁ¸¼º(dependancy)ÀÌ Á¸ÀçÇÑ´Ù. '--save' optionÀº pakage.json ÆÄÀÏÀ» Âü°íÇÏ¿©(package.jsonÀÇ 'dependencies' sectionÀ» Âü°í) »õ·Î ¼³Ä¡ÇÏ´Â ¸ğµâÀÌ ÇÊ¿ä·ÎÇÏ´Â ¸ğµâµéÀ» ÇÔ²² ¼³Ä¡ÇØÁØ´Ù.
+â€» --save option: NPMë“¤ ê°„ì—ëŠ” ì˜ì¡´ì„±(dependancy)ì´ ì¡´ì¬í•œë‹¤. '--save' optionì€ pakage.json íŒŒì¼ì„ ì°¸ê³ í•˜ì—¬(package.jsonì˜ 'dependencies' sectionì„ ì°¸ê³ ) ìƒˆë¡œ ì„¤ì¹˜í•˜ëŠ” ëª¨ë“ˆì´ í•„ìš”ë¡œí•˜ëŠ” ëª¨ë“ˆë“¤ì„ í•¨ê»˜ ì„¤ì¹˜í•´ì¤€ë‹¤.
 
-¡Û ³» project¸¦ (npmÀÌ °ü¸®ÇÏ´Â) package·Î ¸¸µé±â
+â—‹ ë‚´ projectë¥¼ (npmì´ ê´€ë¦¬í•˜ëŠ”) packageë¡œ ë§Œë“¤ê¸°
 
 $> cd ${project directory}
 
 $> npm init
 
-entry point, version µîÀº Àß ¸ğ¸£°ÚÀ¸¸é °ø¶õ(= default)·Î ³²°Ü³õ´Â´Ù.
+entry point, version ë“±ì€ ì˜ ëª¨ë¥´ê² ìœ¼ë©´ ê³µë€(= default)ë¡œ ë‚¨ê²¨ë†“ëŠ”ë‹¤.
 
-package.jsonÆÄÀÏÀÌ »ı¼ºµÇ°í ÇØ´ç ÆÄÀÏ ¾È¿¡ ´ë project°¡ ÀÇÁ¸ÇÏ°í ÀÖ´Â ¸ğµâµéÀÇ ÀÇÁ¸¼º(dependancy)ÀÌ ±â¼úµÈ´Ù.
+package.jsoníŒŒì¼ì´ ìƒì„±ë˜ê³  í•´ë‹¹ íŒŒì¼ ì•ˆì— ëŒ€ projectê°€ ì˜ì¡´í•˜ê³  ìˆëŠ” ëª¨ë“ˆë“¤ì˜ ì˜ì¡´ì„±(dependancy)ì´ ê¸°ìˆ ëœë‹¤.
 
-¡Ú parent project¸¦ »ı¼ºÇÏ¸é npm initÀ» ÅëÇØ¼­ npm package·Î °ü¸®ÇÏ´Â°Ô ÁÁ´Ù. ¿Ö³ÄÇÏ¸é package.jsonÆÄÀÏÀ» ÅëÇØ ¸ğµâµé°úÀÇ ÀÇÁ¸¼ºÀÌ ¸í½ÃÀûÀ¸·Î °ü¸®µÇ±â ¶§¹®ÀÌ´Ù.
+â˜… parent projectë¥¼ ìƒì„±í•˜ë©´ npm initì„ í†µí•´ì„œ npm packageë¡œ ê´€ë¦¬í•˜ëŠ”ê²Œ ì¢‹ë‹¤. ì™œëƒí•˜ë©´ package.jsoníŒŒì¼ì„ í†µí•´ ëª¨ë“ˆë“¤ê³¼ì˜ ì˜ì¡´ì„±ì´ ëª…ì‹œì ìœ¼ë¡œ ê´€ë¦¬ë˜ê¸° ë•Œë¬¸ì´ë‹¤.
 
 
-¡İ Callback ÇÔ¼ö
+â— Callback í•¨ìˆ˜
 
-ÇÔ¼öÀÇ ÀÎÀÚ(argument)·Î Àü´ŞÇÏ´Â (´Ù¸¥) ÇÔ¼ö¸¦ callbackÇÔ¼ö¶ó°í ÇÑ´Ù. CallbackÇÔ¼ö´Â ´Ù¸¥ ÇÔ¼ö·Î ºÎÅÍ ÀÚµ¿ÀûÀ¸·Î È£ÃâµÈ´Ù. ÇÔ¼öÀÇ ±â´ÉÀ» È®ÀåÇÏ´Â ¿ëµµ·Î ÁÖ·Î »ç¿ëµÈ´Ù.
+í•¨ìˆ˜ì˜ ì¸ì(argument)ë¡œ ì „ë‹¬í•˜ëŠ” (ë‹¤ë¥¸) í•¨ìˆ˜ë¥¼ callbackí•¨ìˆ˜ë¼ê³  í•œë‹¤. Callbackí•¨ìˆ˜ëŠ” ë‹¤ë¥¸ í•¨ìˆ˜ë¡œ ë¶€í„° ìë™ì ìœ¼ë¡œ í˜¸ì¶œëœë‹¤. í•¨ìˆ˜ì˜ ê¸°ëŠ¥ì„ í™•ì¥í•˜ëŠ” ìš©ë„ë¡œ ì£¼ë¡œ ì‚¬ìš©ëœë‹¤.
 
-¿¹)
+ì˜ˆ)
 function b(v1, v2){return (v2 - v1);}	//	callback function
 a.sort(b);	//	function as argument = callback function
 
 
-¡İ µ¿±â¿Í ºñµ¿±â
+â— ë™ê¸°ì™€ ë¹„ë™ê¸°
 
-µ¿±â: ³»°¡ ´Ù Á÷Á¢ÇÑ´Ù.
-ºñµ¿±â: ³²(¸ğµâ)¿¡°Ô ÀÏÀ» ¸Ã±â°í ´Ù ÇÑ°ÍÀ¸·Î ÇÑ´Ù.
+ë™ê¸°: ë‚´ê°€ ë‹¤ ì§ì ‘í•œë‹¤.
+ë¹„ë™ê¸°: ë‚¨(ëª¨ë“ˆ)ì—ê²Œ ì¼ì„ ë§¡ê¸°ê³  ë‹¤ í•œê²ƒìœ¼ë¡œ í•œë‹¤.
 
-¿¹) readFile - ºñµ¿±â, default. readFileSync - µ¿±â
+ì˜ˆ) readFile - ë¹„ë™ê¸°, default. readFileSync - ë™ê¸°
 
 //	Synchronous method
 console.log(1);
@@ -56,69 +56,69 @@ console.log(2);
 fs.readFile('7_data.txt', {encoding:'utf8'}, function(err, data){console.log(3); console.log(data);});
 console.log(4);
 
-¡Ø ºñµ¿±â ÀÛ¾÷ÀÌ ¸ÂÁö ¾ÊÀ» ¶§´Â µ¿±â¹æ¹ıÀ» »ç¿ëÇØ¾ß ÇÑ´Ù.
-¡Ø node.js´Â single thread applicationÀÌ´Ù. µ¿±â ¹æ½ÄÀ» »ç¿ëÇÏ¸é ½ÇÇà ½Ã°£ÀÌ °è¼Ó ´©ÀûµÇ±â ¶§¹®¿¡ Ã³¸®°¡ ´Ê¾îÁø´Ù. µû¶ó¼­ ºñµ¿±â ¹æ½Ä°ú callback method¸¦ È°¿ëÇÏ¿© ÇÁ·Î±×·¥ÀÇ ½ÇÇà ¼Óµµ¸¦ ³ôÀÏ ¼ö ÀÖ´Ù.
+â€» ë¹„ë™ê¸° ì‘ì—…ì´ ë§ì§€ ì•Šì„ ë•ŒëŠ” ë™ê¸°ë°©ë²•ì„ ì‚¬ìš©í•´ì•¼ í•œë‹¤.
+â€» node.jsëŠ” single thread applicationì´ë‹¤. ë™ê¸° ë°©ì‹ì„ ì‚¬ìš©í•˜ë©´ ì‹¤í–‰ ì‹œê°„ì´ ê³„ì† ëˆ„ì ë˜ê¸° ë•Œë¬¸ì— ì²˜ë¦¬ê°€ ëŠ¦ì–´ì§„ë‹¤. ë”°ë¼ì„œ ë¹„ë™ê¸° ë°©ì‹ê³¼ callback methodë¥¼ í™œìš©í•˜ì—¬ í”„ë¡œê·¸ë¨ì˜ ì‹¤í–‰ ì†ë„ë¥¼ ë†’ì¼ ìˆ˜ ìˆë‹¤.
 
-¡İ JS Express
+â— JS Express
 
-Express´Â node.jsÀ§¿¡¼­ µ¿ÀÛÇÏ´Â À¥ ÇÁ·¹ÀÓ¿÷ÀÌ´Ù. Express´Â node.js ¼­¹ö °³¹ß¿¡ ÀÖ¾î ¼ø¼öÈ÷ node.js¸¸À» °¡Áö°í ¸¸µé¶§¿Í ºñ±³ÇÏ¿© ¸¹Àº ºÎºĞÀ» ´Ü¼øÈ­ ÇØÁØ´Ù.
+ExpressëŠ” node.jsìœ„ì—ì„œ ë™ì‘í•˜ëŠ” ì›¹ í”„ë ˆì„ì›ì´ë‹¤. ExpressëŠ” node.js ì„œë²„ ê°œë°œì— ìˆì–´ ìˆœìˆ˜íˆ node.jsë§Œì„ ê°€ì§€ê³  ë§Œë“¤ë•Œì™€ ë¹„êµí•˜ì—¬ ë§ì€ ë¶€ë¶„ì„ ë‹¨ìˆœí™” í•´ì¤€ë‹¤.
 
 $> npm install express
 
-¡Û µ¿Àû ÆÄÀÏ vs. Á¤Àû ÆÄÀÏ
+â—‹ ë™ì  íŒŒì¼ vs. ì •ì  íŒŒì¼
 
-µ¿Àû ÆÄÀÏ: programming ¾ğ¾î µîÀÌ µé¾î°¡ ÀÖ´Â ÆÄÀÏ. ÇØ¼®¿¡ µû¶ó µ¿ÀûÀ¸·Î µ¿ÀÛÇÑ´Ù.
+ë™ì  íŒŒì¼: programming ì–¸ì–´ ë“±ì´ ë“¤ì–´ê°€ ìˆëŠ” íŒŒì¼. í•´ì„ì— ë”°ë¼ ë™ì ìœ¼ë¡œ ë™ì‘í•œë‹¤.
 
-Á¤Àû ÆÄÀÏ: µ¥ÀÌÅÍ, ±â¼ú(description)À¸·Î ³»¿ëÀÌ ±¸¼ºµÈ ÆÄÀÏ. ÀÇ¹Ì°¡ °íÁ¤µÈ´Ù.
+ì •ì  íŒŒì¼: ë°ì´í„°, ê¸°ìˆ (description)ìœ¼ë¡œ ë‚´ìš©ì´ êµ¬ì„±ëœ íŒŒì¼. ì˜ë¯¸ê°€ ê³ ì •ëœë‹¤.
 
 
-¡İ Template engine
+â— Template engine
 
-µ¿Àû ÆÄÀÏ ÇÚµé¸µ°ú Á¤Àû ÆÄÀÏ ÇÚµé¸µÀÇ ÀåÁ¡À» °áÇÕÇÑ ÆÄÀÏ Ãë±Ş ¹æ½Ä
+ë™ì  íŒŒì¼ í•¸ë“¤ë§ê³¼ ì •ì  íŒŒì¼ í•¸ë“¤ë§ì˜ ì¥ì ì„ ê²°í•©í•œ íŒŒì¼ ì·¨ê¸‰ ë°©ì‹
 
-Á¤Àû ÆÄÀÏÀÇ °æ¿ì static point¸¦ ÁöÁ¤ÇØ ÁÖ¸é node.js°¡ Á¤Àû ÆÄÀÏµéÀ» ÀÚµ¿À¸·Î loadÇØ ÁÖ±â ¶§¹®¿¡ ÆÄÀÏÀÇ ³»¿ëÀÌ º¯°æµÇ¾îµµ node.js server¸¦ Àç½ÃÀÛÇÒ ÇÊ¿ä°¡ ¾ø´Ù´Â ÀåÁ¡ÀÌ ÀÖ´Ù. ÇÏÁö¸¸ µ¿ÀûÀ¸·Î ³»¿ëÀ» »ı¼ºÇÏ´Â ÄÚµå°¡ ´ã°ÜÁø À§Ä¡(ÁÖ¼Ò, path)·Î Á¢±ÙÇßÀ» ¶§ ÀÌ¸¦ Ã³¸®ÇÏÁö ¸øÇÏ´Â ´ÜÁ¡ÀÌ ÀÖ´Ù.
+ì •ì  íŒŒì¼ì˜ ê²½ìš° static pointë¥¼ ì§€ì •í•´ ì£¼ë©´ node.jsê°€ ì •ì  íŒŒì¼ë“¤ì„ ìë™ìœ¼ë¡œ loadí•´ ì£¼ê¸° ë•Œë¬¸ì— íŒŒì¼ì˜ ë‚´ìš©ì´ ë³€ê²½ë˜ì–´ë„ node.js serverë¥¼ ì¬ì‹œì‘í•  í•„ìš”ê°€ ì—†ë‹¤ëŠ” ì¥ì ì´ ìˆë‹¤. í•˜ì§€ë§Œ ë™ì ìœ¼ë¡œ ë‚´ìš©ì„ ìƒì„±í•˜ëŠ” ì½”ë“œê°€ ë‹´ê²¨ì§„ ìœ„ì¹˜(ì£¼ì†Œ, path)ë¡œ ì ‘ê·¼í–ˆì„ ë•Œ ì´ë¥¼ ì²˜ë¦¬í•˜ì§€ ëª»í•˜ëŠ” ë‹¨ì ì´ ìˆë‹¤.
 
-µ¿Àû ÆÄÀÏ Ã³¸®¸¦ À§ÇØ¼­´Â main entry point ÆÄÀÏ(routing logicÀÌ µé¾îÀÖ´Â ÆÄÀÏ)¿¡ ¿øÇÏ´Â µ¿Àû ±â´ÉÀ» Á¦°øÇÏ´Â ÄÚµå¸¦ ³Ö¾îÁÖ¾î¾ß ÇÏ´Âµ¥ ÀÌ·¸°Ô µÇ¸é °¡µ¶¼ºÀÌ ³·¾ÆÁö°í ¹«¾ùº¸´Ù ÄÁÅÙÃ÷¿Í ÄÁÆ®·ÑÀÌ ¼¯¿©¼­ °ü¸®°¡ ¾î·Á¿öÁö´Â ´ÜÁ¡ÀÌ »ı±ä´Ù.
+ë™ì  íŒŒì¼ ì²˜ë¦¬ë¥¼ ìœ„í•´ì„œëŠ” main entry point íŒŒì¼(routing logicì´ ë“¤ì–´ìˆëŠ” íŒŒì¼)ì— ì›í•˜ëŠ” ë™ì  ê¸°ëŠ¥ì„ ì œê³µí•˜ëŠ” ì½”ë“œë¥¼ ë„£ì–´ì£¼ì–´ì•¼ í•˜ëŠ”ë° ì´ë ‡ê²Œ ë˜ë©´ ê°€ë…ì„±ì´ ë‚®ì•„ì§€ê³  ë¬´ì—‡ë³´ë‹¤ ì»¨í…ì¸ ì™€ ì»¨íŠ¸ë¡¤ì´ ì„ì—¬ì„œ ê´€ë¦¬ê°€ ì–´ë ¤ì›Œì§€ëŠ” ë‹¨ì ì´ ìƒê¸´ë‹¤.
 
-À§¿Í °°Àº Á¤Àû ÆÄÀÏ Ã³¸®, ±×¸®°í µ¿Àû ÆÄÀÏ Ã³¸®ÀÇ ÀåÁ¡À» ÃëÇÏ·Á´Â ÆÄÀÏ Ã³¸® ¹æ½ÄÀÌ template methodÀÌ´Ù.
+ìœ„ì™€ ê°™ì€ ì •ì  íŒŒì¼ ì²˜ë¦¬, ê·¸ë¦¬ê³  ë™ì  íŒŒì¼ ì²˜ë¦¬ì˜ ì¥ì ì„ ì·¨í•˜ë ¤ëŠ” íŒŒì¼ ì²˜ë¦¬ ë°©ì‹ì´ template methodì´ë‹¤.
 
-¡Û Template engine - Jade
+â—‹ Template engine - Jade
 
 $> npm install jade --save
 
 
-¡İ query string(= GET method)¸¦ ÀÌ¿ëÇÑ ¿äÃ»ÀÇ Ã³¸®
+â— query string(= GET method)ë¥¼ ì´ìš©í•œ ìš”ì²­ì˜ ì²˜ë¦¬
 
-express call back functionÀÇ req°´Ã¼ÀÇ query¸¦ »ç¿ëÇÑ´Ù.
+express call back functionì˜ reqê°ì²´ì˜ queryë¥¼ ì‚¬ìš©í•œë‹¤.
 
-¿¹) req.query.id
+ì˜ˆ) req.query.id
 
 
-¡İ Semantic web
-: query string ¾øÀÌ URL·Î Æ¯Á¤ ¿äÃ»À» º¸³»´Â °Í
+â— Semantic web
+: query string ì—†ì´ URLë¡œ íŠ¹ì • ìš”ì²­ì„ ë³´ë‚´ëŠ” ê²ƒ
 
-¿¹)
+ì˜ˆ)
 Non-semanctic URL: http://example.com/index.php?page=name
 Semantic URL: http://example.com/name
 
-express call back fucntion¿¡ Àü´ŞµÇ´Â req °´Ã¼ÀÇ params¸¦ ÀÌ¿ëÇÑ´Ù.
+express call back fucntionì— ì „ë‹¬ë˜ëŠ” req ê°ì²´ì˜ paramsë¥¼ ì´ìš©í•œë‹¤.
 
-¿¹) req.params.id
+ì˜ˆ) req.params.id
 
 
-¡İ GET ¹æ½Ä°ú POST ¹æ½ÄÀ» ÅëÇÑ Á¤º¸Àü´Ş
+â— GET ë°©ì‹ê³¼ POST ë°©ì‹ì„ í†µí•œ ì •ë³´ì „ë‹¬
 
-¨ç body-parser middleware¸¦ ¼³Ä¡ÇÑ´Ù. »ç¿ëÀÚ°¡ Àü¼ÛÇÑ µ¥ÀÌÅÍ´Â ¸ÕÀú body-parser¸¦ Åë°úÇÑ ÈÄ(Ã³¸®µÈ ÈÄ) app¿¡ Àü´ŞµÇ±â ¶§¹®¿¡ middle ware¶ó°í ÇÑ´Ù.
+â‘  body-parser middlewareë¥¼ ì„¤ì¹˜í•œë‹¤. ì‚¬ìš©ìê°€ ì „ì†¡í•œ ë°ì´í„°ëŠ” ë¨¼ì € body-parserë¥¼ í†µê³¼í•œ í›„(ì²˜ë¦¬ëœ í›„) appì— ì „ë‹¬ë˜ê¸° ë•Œë¬¸ì— middle wareë¼ê³  í•œë‹¤.
 
 $> npm install body-parser (-g) --save
 
-¨è body parser¸¦ include½ÃÅ²´Ù.
+â‘¡ body parserë¥¼ includeì‹œí‚¨ë‹¤.
 
-¿¹) var bodyParser = require('body-parser');
+ì˜ˆ) var bodyParser = require('body-parser');
 
-¨é app.post() method¸¦ »ç¿ëÇØ¼­ POST ¹æ½ÄÀ¸·Î Àü´ŞµÈ data¸¦ ¹Ş´Â´Ù.
+â‘¢ app.post() methodë¥¼ ì‚¬ìš©í•´ì„œ POST ë°©ì‹ìœ¼ë¡œ ì „ë‹¬ëœ dataë¥¼ ë°›ëŠ”ë‹¤.
 
-¿¹)
+ì˜ˆ)
 app.post('/form_receiver', function(req, res){
 	var title = req.body.title;
 	var description = req.body.description;
@@ -126,26 +126,26 @@ app.post('/form_receiver', function(req, res){
 });
 
 
-¡İ watcher module - supervisor
+â— watcher module - supervisor
 
-ÆÄÀÏ¿¡ º¯È­°¡ ÀÖÀ¸¸é ÇØ´ç ÆÄÀÏ·Î ºÎÅÍ forkµÈ precess¸¦ º¯°æµÈ ÆÄÀÏÀÇ ³»¿ëÀ¸·Î ´Ù½Ã ½ÇÇà½ÃÄÑÁØ´Ù.
+íŒŒì¼ì— ë³€í™”ê°€ ìˆìœ¼ë©´ í•´ë‹¹ íŒŒì¼ë¡œ ë¶€í„° forkëœ precessë¥¼ ë³€ê²½ëœ íŒŒì¼ì˜ ë‚´ìš©ìœ¼ë¡œ ë‹¤ì‹œ ì‹¤í–‰ì‹œì¼œì¤€ë‹¤.
 
 $> npm install supervisor (-g)
 
 
-¡İ Áß°£ Á¤¸® ¿¹Á¦: »ç¿ëÀÚ Á¤º¸¸¦ ÀúÀåÇÏ°í (¿äÃ» ½Ã) ²¨³»¼­ Á¦°øÇÏ´Â ¼­¹ö ±¸Çö
+â— ì¤‘ê°„ ì •ë¦¬ ì˜ˆì œ: ì‚¬ìš©ì ì •ë³´ë¥¼ ì €ì¥í•˜ê³  (ìš”ì²­ ì‹œ) êº¼ë‚´ì„œ ì œê³µí•˜ëŠ” ì„œë²„ êµ¬í˜„
 
-¡Ø ÀÌ¹ø topic¿¡¼­´Â Á¤º¸¸¦ database¿¡ ÀúÀåÇÏÁö ¾Ê°í, file¿¡ ÀúÀåÇÑ´Ù.
+â€» ì´ë²ˆ topicì—ì„œëŠ” ì •ë³´ë¥¼ databaseì— ì €ì¥í•˜ì§€ ì•Šê³ , fileì— ì €ì¥í•œë‹¤.
 
 var fs = require('fs');
 
-¡Û file write
+â—‹ file write
 
 fs.writeFile('file_name', format, callback function);
 
-callback functionÀº º¸Åë error Ã³¸®¿Í file write ÀÌÈÄ ÀÛ¾÷À» Ã³¸®ÇÑ´Ù.
+callback functionì€ ë³´í†µ error ì²˜ë¦¬ì™€ file write ì´í›„ ì‘ì—…ì„ ì²˜ë¦¬í•œë‹¤.
 
-¿¹)
+ì˜ˆ)
 fs.writeFile('./data/'+title, description, 'utf8', function(err){
 	if(err){
 		console.log(err);
@@ -154,11 +154,11 @@ fs.writeFile('./data/'+title, description, 'utf8', function(err){
 	res.redirect('/topic/'+title);
 });
 
-¡Û file read
+â—‹ file read
 
 fs.readFile('file_name', format, callback function);
 
-¿¹)
+ì˜ˆ)
 fs.readFile('data/'+id, 'utf8', function(err, data){
 	if(err){
 		console.log(err);
@@ -167,11 +167,11 @@ fs.readFile('data/'+id, 'utf8', function(err, data){
 	res.render('view', {topics:files, title:id, description:data});
 });
 
-¡Û directory read
+â—‹ directory read
 
 fs.readdir('directory_name', callback function);
 
-¿¹)
+ì˜ˆ)
 fs.readdir('data', function(err, files){
 	if(err){
 		console.log(err);
@@ -181,71 +181,71 @@ fs.readdir('data', function(err, files){
 });
 
 
-¡İ Database
+â— Database
 
 Relational DB(RDB)
 
 NoSQL(Not Only SQL) DB
 
-¡Û Orient DB - a kind of NoSQL
+â—‹ Orient DB - a kind of NoSQL
 
-¨ç www.orientdb.com¿¡ Á¢¼ÓÇØ¼­ community editionÀ» ´Ù¿î·Îµå ¹Ş´Â´Ù.
+â‘  www.orientdb.comì— ì ‘ì†í•´ì„œ community editionì„ ë‹¤ìš´ë¡œë“œ ë°›ëŠ”ë‹¤.
 
-¨è ¾ĞÃàÀ» Ç®°í Àû´çÇÑ À§Ä¡¿¡ ¿Å°Ü³õ´Â´Ù. ¿¹) c:
+â‘¡ ì••ì¶•ì„ í’€ê³  ì ë‹¹í•œ ìœ„ì¹˜ì— ì˜®ê²¨ë†“ëŠ”ë‹¤. ì˜ˆ) c:
 
-¨é windowÀÇ °æ¿ì: server.bat¸¦ ½ÇÇà½ÃÅ²´Ù
+â‘¢ windowì˜ ê²½ìš°: server.batë¥¼ ì‹¤í–‰ì‹œí‚¨ë‹¤
 
-¨ê ^C·Î ÇÁ·Î¼¼½º¸¦ Á¾·á½ÃÅ² ÈÄ¿¡´Â shutdown.bat¸¦ ½ÇÇà½ÃÄÑ¼­ ÀÚ¿øÀ» ¹İ³³ÇÑ´Ù.
+â‘£ ^Cë¡œ í”„ë¡œì„¸ìŠ¤ë¥¼ ì¢…ë£Œì‹œí‚¨ í›„ì—ëŠ” shutdown.batë¥¼ ì‹¤í–‰ì‹œì¼œì„œ ìì›ì„ ë°˜ë‚©í•œë‹¤.
 
-OrientDB¸¦ ½ÇÇà½ÃÅ² ÈÄ °ü¸®ÀÚ¿¡ Á¢¼ÓÀÌ ÇÊ¿äÇÑ °æ¿ì http connection(¿¹, 0.0.0.0:2480)¿¡ Á¢¼ÓÇØ¼­ °ü¸®ÀÚ È­¸éÀ¸·Î µé¾î°£´Ù.
+OrientDBë¥¼ ì‹¤í–‰ì‹œí‚¨ í›„ ê´€ë¦¬ìì— ì ‘ì†ì´ í•„ìš”í•œ ê²½ìš° http connection(ì˜ˆ, 0.0.0.0:2480)ì— ì ‘ì†í•´ì„œ ê´€ë¦¬ì í™”ë©´ìœ¼ë¡œ ë“¤ì–´ê°„ë‹¤.
 
-¡Û OrientDBÀÇ database ¼³Á¤
+â—‹ OrientDBì˜ database ì„¤ì •
 
-TableÀ» ¸¸µç´Ù = DBÀÇ ±¸Á¶¸¦ Á¤ÀÇÇÑ´Ù.
-cf.) ±¸Á¶¸¦ ¿ÏÀüÈ÷ Á¤ÀÇÇØ¼­ ¿¹¿Ü¸¦ Çã¿ëÇÏÁö ¾Ê´Â´Ù = schemaful
+Tableì„ ë§Œë“ ë‹¤ = DBì˜ êµ¬ì¡°ë¥¼ ì •ì˜í•œë‹¤.
+cf.) êµ¬ì¡°ë¥¼ ì™„ì „íˆ ì •ì˜í•´ì„œ ì˜ˆì™¸ë¥¼ í—ˆìš©í•˜ì§€ ì•ŠëŠ”ë‹¤ = schemaful
 
-¨ç classÀÇ »ı¼º
+â‘  classì˜ ìƒì„±
 
-°ü°èÇü DBÀÇ table = Orient DB¿¡¼­ÀÇ class
+ê´€ê³„í˜• DBì˜ table = Orient DBì—ì„œì˜ class
 
-¿¹) schema ¡æ new (generic) ¡æ classÀÇ ÀÌ¸§À» 'topic' µîÀ¸·Î ¼³Á¤ ÈÄ 'save'
+ì˜ˆ) schema â†’ new (generic) â†’ classì˜ ì´ë¦„ì„ 'topic' ë“±ìœ¼ë¡œ ì„¤ì • í›„ 'save'
 
-¨è classÀÇ property(RDB¿¡¼­ tableÀÇ column) ¼³Á¤
+â‘¡ classì˜ property(RDBì—ì„œ tableì˜ column) ì„¤ì •
 
-°ü¸®ÀÚ È­¸é¿¡¼­ class name ¼±ÅÃ ¡æ '+ new property' ¼±ÅÃÇÏ¿© property Ãß°¡
+ê´€ë¦¬ì í™”ë©´ì—ì„œ class name ì„ íƒ â†’ '+ new property' ì„ íƒí•˜ì—¬ property ì¶”ê°€
 
-¿¹) title, description field
+ì˜ˆ) title, description field
 
-¨é °ü¸®ÀÚ È­¸é¿¡¼­ dataÀÇ Ãß°¡
+â‘¢ ê´€ë¦¬ì í™”ë©´ì—ì„œ dataì˜ ì¶”ê°€
 
-schemaÈ­¸é¿¡¼­ topic ¼±ÅÃ ¡æ È­¸é 1½Ã ¹æÇâÀÇ 'New record'¼±ÅÃ ¡æ ³»¿ëÀ» ÀÔ·ÂÇÏ°í 'save'
+schemaí™”ë©´ì—ì„œ topic ì„ íƒ â†’ í™”ë©´ 1ì‹œ ë°©í–¥ì˜ 'New record'ì„ íƒ â†’ ë‚´ìš©ì„ ì…ë ¥í•˜ê³  'save'
 
-Æ¯Á¤ Çà¿¡¸¸ field¸¦ Ãß°¡ ÇÏ°í ½ÍÀº °æ¿ì '+ ADD FIELD'¹öÆ°À» ÀÌ¿ëÇÏ¿© Ãß°¡ÇÑ´Ù.
+íŠ¹ì • í–‰ì—ë§Œ fieldë¥¼ ì¶”ê°€ í•˜ê³  ì‹¶ì€ ê²½ìš° '+ ADD FIELD'ë²„íŠ¼ì„ ì´ìš©í•˜ì—¬ ì¶”ê°€í•œë‹¤.
 
-¨ê °ü¸®ÀÚ È­¸é¿¡¼­ dataº¸±â
+â‘£ ê´€ë¦¬ì í™”ë©´ì—ì„œ dataë³´ê¸°
 
-Browse ¡æ SQL command ÀÔ·Â
+Browse â†’ SQL command ì…ë ¥
 
-¿¹) SELECT * FROM topic;
+ì˜ˆ) SELECT * FROM topic;
 
-ÀÌ ÈÄ È­¸é ¾Æ·¡¿¡ data°¡ ³ªÅ¸³­´Ù.
+ì´ í›„ í™”ë©´ ì•„ë˜ì— dataê°€ ë‚˜íƒ€ë‚œë‹¤.
 
-¨ë °ü¸®ÀÚ È­¸éÀÇ 'Graph' ¸Ş´º¸¦ ÀÌ¿ëÇÏ¿© °ü°è¼ºÀ» µµ½ÄÀ¸·Î È®ÀÎÇØ º¼ ¼ö ÀÖ´Ù.
+â‘¤ ê´€ë¦¬ì í™”ë©´ì˜ 'Graph' ë©”ë‰´ë¥¼ ì´ìš©í•˜ì—¬ ê´€ê³„ì„±ì„ ë„ì‹ìœ¼ë¡œ í™•ì¸í•´ ë³¼ ìˆ˜ ìˆë‹¤.
 
-¡Û node.js¿Í javascript¸¦ ÀÌ¿ëÇÏ¿© orientDB ÄÁÆ®·Ñ
+â—‹ node.jsì™€ javascriptë¥¼ ì´ìš©í•˜ì—¬ orientDB ì»¨íŠ¸ë¡¤
 
-¨ç orientjs moduleÀ» ¼³Ä¡
+â‘  orientjs moduleì„ ì„¤ì¹˜
 
 $> npm install orientjs --save
 
-¨è nodejs ÆÄÀÏ ¾È¿¡¼­ db¸¦ ´Ù·ê ¶§´Â nodejs javascript ¹®¹ıÀ» µû¸¥´Ù.
+â‘¡ nodejs íŒŒì¼ ì•ˆì—ì„œ dbë¥¼ ë‹¤ë£° ë•ŒëŠ” nodejs javascript ë¬¸ë²•ì„ ë”°ë¥¸ë‹¤.
 
-¿¹)
+ì˜ˆ)
 
 var orientDB = require('orientjs');
 
 var server = orientDB({
-	host: 'localhost',	//	DBÀÇ À§Ä¡¸¦ ¾Ë·ÁÁØ´Ù.
+	host: 'localhost',	//	DBì˜ ìœ„ì¹˜ë¥¼ ì•Œë ¤ì¤€ë‹¤.
 	port: 2424,
 	username: 'root',
 	password: 'your password'
@@ -253,25 +253,25 @@ var server = orientDB({
 
 var db = server.use('db name');
 
-¨é SELECT(Read?)
+â‘¢ SELECT(Read?)
 
-orient DB´Â SQL Ä¿¸Çµå ÀÔ·ÂÀ» ¹ŞÀ» ¼ö ÀÖ´Ù.
+orient DBëŠ” SQL ì»¤ë§¨ë“œ ì…ë ¥ì„ ë°›ì„ ìˆ˜ ìˆë‹¤.
 
-¿¹)
+ì˜ˆ)
 
 var sql = 'SELECT * FROM topic WHERE @rid=:rid';
 var param = {
-	params:{	//	ÀÌ JSON parameter 'params'´Â ¾à¼ÓÀÌ´Ù.
+	params:{	//	ì´ JSON parameter 'params'ëŠ” ì•½ì†ì´ë‹¤.
 		rid:'#22:0'
 	}
 };
-db.query(sql, param).then(function(results){	//	queryÀÇ µÎ ¹øÂ° ÀÎÀÚ·Î JSON data¸¦ Àü´ŞÇÑ´Ù.
+db.query(sql, param).then(function(results){	//	queryì˜ ë‘ ë²ˆì§¸ ì¸ìë¡œ JSON dataë¥¼ ì „ë‹¬í•œë‹¤.
 	console.log(results);
 });
 
-¨ê INSERT
+â‘£ INSERT
 
-¿¹)
+ì˜ˆ)
 
 sql = 'INSERT INTO topic (title, description) VALUES(:title, :desc)';
 
@@ -286,9 +286,9 @@ db.query(sql, param).then(function(results){
 	console.log(results);
 });
 
-¨ë UPDATE
+â‘¤ UPDATE
 
-¿¹)
+ì˜ˆ)
 
 sql = 'UPDATE topic SET title=:title WHERE @rid=:rid';
 
@@ -303,9 +303,9 @@ db.query(sql, param).then(function(results){
 	console.log(results);
 });
 
-¨ì DELETE
+â‘¥ DELETE
 
-¿¹)
+ì˜ˆ)
 
 sql = 'DELETE FROM topic WHERE @rid=:rid';
 
@@ -320,22 +320,22 @@ db.query(sql, param).then(function(results){
 });
 
 
-¡İ MySQL ÀÌ¿ëÇÏ±â
+â— MySQL ì´ìš©í•˜ê¸°
 
-OS À¯Çü¿¡ ¸Â°Ô MySQLÀ» ¼³Ä¡ÇÏ°í ¼³Ä¡ À§Ä¡ È¤Àº bin ÆÄÀÏÀÇ À§Ä¡·Î ÀÌµ¿ÇÑ´Ù.
+OS ìœ í˜•ì— ë§ê²Œ MySQLì„ ì„¤ì¹˜í•˜ê³  ì„¤ì¹˜ ìœ„ì¹˜ í˜¹ì€ bin íŒŒì¼ì˜ ìœ„ì¹˜ë¡œ ì´ë™í•œë‹¤.
 
-¨ç DB Server¿¡ Á¢¼ÓÇÏ±â
+â‘  DB Serverì— ì ‘ì†í•˜ê¸°
 
 $> mysql -u root -p
-ÀÌ ÈÄ password ÀÔ·Â Ä¿¸Çµå ¶óÀÎÀÌ ³ªÅ¸³ª¸é password¸¦ ÀÔ·ÂÇÑ´Ù.
+ì´ í›„ password ì…ë ¥ ì»¤ë§¨ë“œ ë¼ì¸ì´ ë‚˜íƒ€ë‚˜ë©´ passwordë¥¼ ì…ë ¥í•œë‹¤.
 
-¨è DB Á¶È¸ ¹× »ı¼º
+â‘¡ DB ì¡°íšŒ ë° ìƒì„±
 
 mysql> show databases;
 
 mysql> create database alpha character set utf8 collate utf8_general_ci;
 
-¨é TableÀÇ Á¶È¸ ¹× »ı¼º
+â‘¢ Tableì˜ ì¡°íšŒ ë° ìƒì„±
 
 mysql> use alpha;
 
@@ -345,7 +345,7 @@ mysql> CREATE TABLE `topic` (`id` int(11) NOT NULL AUTO_INCREMENT, `title` varch
 
 mysql> describe topic;
 
-¨ê record¸¦ (ÀÔ·Â)Ãß°¡ÇÑ´Ù.
+â‘£ recordë¥¼ (ì…ë ¥)ì¶”ê°€í•œë‹¤.
 
 mysql> insert into topic (title, description, author) VALUES('Javascript', 'Computer language for web.', 'quanto');
 
@@ -355,22 +355,22 @@ mysql> insert into topic (title, description, author) VALUES('NPM', 'Package Man
 
 mysql> select * from topic where id=2;
 
-¨ë dataÀÇ ¼öÁ¤
+â‘¤ dataì˜ ìˆ˜ì •
 
 mysql> update topic SET title='npm', description='Nodejs package manager' where id=3;
 
 mysql> select * from topic where id=3;
 
-¨ì dataÀÇ »èÁ¦
+â‘¥ dataì˜ ì‚­ì œ
 
 mysql> delete from topic where id=3;
 
 mysql> select * from topic;
 
 
-¡Û Javascript(server side)¸¦ ÀÌ¿ëÇÏ¿© MySQL control
+â—‹ Javascript(server side)ë¥¼ ì´ìš©í•˜ì—¬ MySQL control
 
-node-mysql moduleÀÌ ÇÊ¿äÇÏ´Ù.
+node-mysql moduleì´ í•„ìš”í•˜ë‹¤.
 
 $> npm install --save node-mysql
 
@@ -382,18 +382,18 @@ var conn = mysql.createConnection({
 	database: 'your DB'
 });
 
-conn.connect();	//	query¸¦ À§ÇØ DB¸¦ ¿¬°á
+conn.connect();	//	queryë¥¼ ìœ„í•´ DBë¥¼ ì—°ê²°
 
-conn.end();	//	DB query¸¦ ¸¶Ä¡°í ³­ ÈÄ ¿¬°áÀ» ÇØÁ¦
+conn.end();	//	DB queryë¥¼ ë§ˆì¹˜ê³  ë‚œ í›„ ì—°ê²°ì„ í•´ì œ
 
 
-¨ç Read
+â‘  Read
 
-var sql = 'SELECT * FROM topic WHERE id=?';	//	º¯¼ö¸¦ '?'·Î Ç¥½ÃÇÑ´Ù.
+var sql = 'SELECT * FROM topic WHERE id=?';	//	ë³€ìˆ˜ë¥¼ '?'ë¡œ í‘œì‹œí•œë‹¤.
 
-var params = [id];	º¯¼ö(?)¸¦ ÀÚ¸®¿¡ ¸Â°Ô ¹è¿­·Î ¸¸µç´Ù.
+var params = [id];	ë³€ìˆ˜(?)ë¥¼ ìë¦¬ì— ë§ê²Œ ë°°ì—´ë¡œ ë§Œë“ ë‹¤.
 
-conn.query(sql, params, function(err, row, field){	//	query, º¯¼ö, callback
+conn.query(sql, params, function(err, row, field){	//	query, ë³€ìˆ˜, callback
 	if(err){
 		console.log(err);
 		res.status(500).send('Internal Server Error');
@@ -404,13 +404,13 @@ conn.query(sql, params, function(err, row, field){	//	query, º¯¼ö, callback
 });
 
 
-¨è Create
+â‘¡ Create
 
 var sql = 'INSERT INTO topic (title, description, author) VALUES(?, ?, ?)';
 
-var params = [title, description, author];	//	º¯¼ö ¹è¿­
+var params = [title, description, author];	//	ë³€ìˆ˜ ë°°ì—´
 
-conn.query(sql, params, function(err, row, field){	//	Äõ¸®, º¯¼ö, callback
+conn.query(sql, params, function(err, row, field){	//	ì¿¼ë¦¬, ë³€ìˆ˜, callback
 	if(err){
 		console.log(err);
 		res.status(500).send('Internal Server Error');
@@ -421,7 +421,7 @@ conn.query(sql, params, function(err, row, field){	//	Äõ¸®, º¯¼ö, callback
 	}
 });
 
-¨é Update
+â‘¢ Update
 
 var sql = 'UPDATE topic SET title=?, description=?, author=? WHERE id=?';
 
@@ -437,7 +437,7 @@ conn.query(sql, params, function(err, row, field){
 	}
 });
 
-¨ê Delete
+â‘£ Delete
 
 var sql = 'DELETE FROM topic WHERE id=?';
 
@@ -453,24 +453,24 @@ conn.query(sql, params, function(err, rows, fields){
 	}
 });
 
-¡Ú MySQL 8.0 versionÀ¸·Î ³Ñ¾î¿À¸é¼­ ÀÎÁõ ¹æ¹ıÀÌ SHA256_PASSWORD ¡æ SHA2_PASSWORD·Î °­È­µÇ¾ú´Ù. ÇÏÁö¸¸ ¾ÆÁ÷(2018.11¿ù ±âÁØ) node.js Mysql library°¡ ÀÌ º¯È­¿¡ ´ëÀÀÇÏÁö ¸øÇÏ°í ÀÖ´Ù. Á¢¼Ó½Ã¿¡ 'ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server'¿Í °°Àº error ¸Ş½ÃÁö°¡ ¶á´Ù¸é mysqlÀÇ ÀÎÁõ ¹æ¹ıÀ» ´Ù½Ã ¼³Á¤ÇØ ÁÙ ÇÊ¿ä°¡ ÀÖ´Ù. ¾Æ·¡¿Í °°ÀÌ node.js¸¦ ÅëÇØ Á¢¼ÓÇÏ°íÀÚ ÇÏ´Â »ç¿ëÀÚÀÇ ÀÎÁõ¹æ¹ıÀ» ±âÁ¸(native)¹æ¹ıÀ¸·Î ¼³Á¤ÇÏ¸é node.js¸¦ ÅëÇØ 8.0 versionÀÇ MySQL°ú ¿¬µ¿ÇÒ ¼ö ÀÖ´Ù.
+â˜… MySQL 8.0 versionìœ¼ë¡œ ë„˜ì–´ì˜¤ë©´ì„œ ì¸ì¦ ë°©ë²•ì´ SHA256_PASSWORD â†’ SHA2_PASSWORDë¡œ ê°•í™”ë˜ì—ˆë‹¤. í•˜ì§€ë§Œ ì•„ì§(2018.11ì›” ê¸°ì¤€) node.js Mysql libraryê°€ ì´ ë³€í™”ì— ëŒ€ì‘í•˜ì§€ ëª»í•˜ê³  ìˆë‹¤. ì ‘ì†ì‹œì— 'ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server'ì™€ ê°™ì€ error ë©”ì‹œì§€ê°€ ëœ¬ë‹¤ë©´ mysqlì˜ ì¸ì¦ ë°©ë²•ì„ ë‹¤ì‹œ ì„¤ì •í•´ ì¤„ í•„ìš”ê°€ ìˆë‹¤. ì•„ë˜ì™€ ê°™ì´ node.jsë¥¼ í†µí•´ ì ‘ì†í•˜ê³ ì í•˜ëŠ” ì‚¬ìš©ìì˜ ì¸ì¦ë°©ë²•ì„ ê¸°ì¡´(native)ë°©ë²•ìœ¼ë¡œ ì„¤ì •í•˜ë©´ node.jsë¥¼ í†µí•´ 8.0 versionì˜ MySQLê³¼ ì—°ë™í•  ìˆ˜ ìˆë‹¤.
 
 mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'your root password';
 
 
-¡İ HTTP - Hyper Text Transfer Protocol
+â— HTTP - Hyper Text Transfer Protocol
 
-Stateless: ¸Å Á¢¼ÓÀº ÀÌÀü Á¢¼ÓÀÇ »óÅÂ(µ¥ÀÌÅÍ)¸¦ ¾Ë ¼ö ¾ø´Ù.
+Stateless: ë§¤ ì ‘ì†ì€ ì´ì „ ì ‘ì†ì˜ ìƒíƒœ(ë°ì´í„°)ë¥¼ ì•Œ ìˆ˜ ì—†ë‹¤.
 
-¡Û Cookie
+â—‹ Cookie
 
-HTTPÀÇ stateless Æ¯¼ºÀ» ÇØ°áÇÏ±â À§ÇØ¼­ Netscape¿¡¼­ ¸¸µç ¼­¹ö¿¡ ÀúÀåµÇ´Â »óÅÂÁ¤º¸
+HTTPì˜ stateless íŠ¹ì„±ì„ í•´ê²°í•˜ê¸° ìœ„í•´ì„œ Netscapeì—ì„œ ë§Œë“  ì„œë²„ì— ì €ì¥ë˜ëŠ” ìƒíƒœì •ë³´
 
-expressjs.com ¡æ API¹®¼­ ¡æ Request ¡æ req.cookies ÂüÁ¶: cookie-parser middle ware¸¦ ¼³Ä¡ÇÏµµ·Ï ¾È³»ÇÏ°í ÀÖ´Ù.
+expressjs.com â†’ APIë¬¸ì„œ â†’ Request â†’ req.cookies ì°¸ì¡°: cookie-parser middle wareë¥¼ ì„¤ì¹˜í•˜ë„ë¡ ì•ˆë‚´í•˜ê³  ìˆë‹¤.
 
 $> npm install cookie-parser --save
 
-¡Ú DB°¡ client°¡ data¸¦ server¿¡ CRUD(Create, Read, Update, Delete)ÇÏ´Â °ÍÀÌ¶ó¸é, Cookie´Â ¹İ´ë·Î server°¡ client PC¿¡ data¸¦ CRUDÇÏ´Â °ÍÀÌ´Ù.
+â˜… DBê°€ clientê°€ dataë¥¼ serverì— CRUD(Create, Read, Update, Delete)í•˜ëŠ” ê²ƒì´ë¼ë©´, CookieëŠ” ë°˜ëŒ€ë¡œ serverê°€ client PCì— dataë¥¼ CRUDí•˜ëŠ” ê²ƒì´ë‹¤.
 
 var cookieParser = require('cookie-parser');
 
@@ -478,18 +478,18 @@ var app = express();
 
 app.use(cookieParser());
 
-¨ç Create
+â‘  Create
 
 if(req.cookies.cart){
-	var cart = req.cookies.cart;	//	cart¶ó´Â cookie¸¦ °¡Á®¿Â´Ù
+	var cart = req.cookies.cart;	//	cartë¼ëŠ” cookieë¥¼ ê°€ì ¸ì˜¨ë‹¤
 }
 else{
 	var cart = {};	//	empty javascript object
 }
 
-res.cookie('cart', cart);	//	cart¶ó´Â cookie¸¦ ¸¸µç´Ù
+res.cookie('cart', cart);	//	cartë¼ëŠ” cookieë¥¼ ë§Œë“ ë‹¤
 
-¨è Read
+â‘¡ Read
 
 var cart = req.cookies.cart;
 
@@ -504,7 +504,7 @@ else{
 }
 res.send(`<ul>${output}</ul>`);
 
-¨é Update
+â‘¢ Update
 
 var id = req.params.id;
 
@@ -520,31 +520,31 @@ if(!cart[id]){
 cart[id] = parseInt(cart[id]) + 1;	//	increase cart[id] by 1
 res.cookie('cart', cart);	//	update cookie cart
 
-¨ê Delete
+â‘£ Delete
 
-¿¹) delete req.session.displayName;
+ì˜ˆ) delete req.session.displayName;
 
 
-¡Û Cookie¿Í º¸¾È
+â—‹ Cookieì™€ ë³´ì•ˆ
 
 Encrypt cookie
 
-app.use(cookieParser('98@sk161fvi28#$u'));	//	cookieParser¿¡ key°ªÀ» ÀÎÀÚ·Î Àü´Ş
+app.use(cookieParser('98@sk161fvi28#$u'));	//	cookieParserì— keyê°’ì„ ì¸ìë¡œ ì „ë‹¬
 
-var cart = req.signedCookies.cart;	//	cookies °´Ã¼ ´ë½Å signedCookie °´Ã¼¸¦ »ç¿ë
+var cart = req.signedCookies.cart;	//	cookies ê°ì²´ ëŒ€ì‹  signedCookie ê°ì²´ë¥¼ ì‚¬ìš©
 
-res.cookie('cart', cart, {signed:true});	//	update½Ã ¼¼ ¹øÂ° ÀÎÀÚ·Î {signed:true} pair Àü´Ş
+res.cookie('cart', cart, {signed:true});	//	updateì‹œ ì„¸ ë²ˆì§¸ ì¸ìë¡œ {signed:true} pair ì „ë‹¬
 
-¡Ú id, password´Â º¸¾È»ó ¸Å¿ì Áß¿äÇÑ Á¤º¸ÀÌ¹Ç·Î ¾î¶² °æ¿ì¿¡µµ cookie¿¡ ÀúÀåÇÏÁö ¾Ê´Â´Ù.
+â˜… id, passwordëŠ” ë³´ì•ˆìƒ ë§¤ìš° ì¤‘ìš”í•œ ì •ë³´ì´ë¯€ë¡œ ì–´ë–¤ ê²½ìš°ì—ë„ cookieì— ì €ì¥í•˜ì§€ ì•ŠëŠ”ë‹¤.
 
 
-¡İ Session
+â— Session
 
-: Cookie¸¦ °³¼±ÇÑ ¹æ½Ä
+: Cookieë¥¼ ê°œì„ í•œ ë°©ì‹
 
-Server´Â clientÀÇ PC¿¡ cookie¸¦ ÀúÀåÇÏ³ª cookieÀÇ ³»¿ëÀ¸·Î id¸¸À» ÀúÀåÇÑ´Ù. ½ÇÁ¦ »ç¿ëÀÚ data´Â server¿¡ ÀúÀåÇÏ°í »ç¿ëÀÚÀÇ id·Î ½Äº°ÇÏ¿© »ç¿ëÇÑ´Ù.
+ServerëŠ” clientì˜ PCì— cookieë¥¼ ì €ì¥í•˜ë‚˜ cookieì˜ ë‚´ìš©ìœ¼ë¡œ idë§Œì„ ì €ì¥í•œë‹¤. ì‹¤ì œ ì‚¬ìš©ì dataëŠ” serverì— ì €ì¥í•˜ê³  ì‚¬ìš©ìì˜ idë¡œ ì‹ë³„í•˜ì—¬ ì‚¬ìš©í•œë‹¤.
 
-ÀÚµ¿ ·Î±×ÀÎÀÇ °æ¿ì sessionÀ» ÀÌ¿ëÇÏ¿© »ç¿ëÀÚ°¡ ¸í½ÃÀûÀ¸·Î log outÇÏÁö ¾ÊÀº °æ¿ì id°¡ ¸Â´Â »ç¿ëÀÚ¸¦ ÀÚµ¿ ·Î±×ÀÎÇÏ´Â Ã³¸®¸¦ ÇÒ ¼ö ÀÖ´Ù.
+ìë™ ë¡œê·¸ì¸ì˜ ê²½ìš° sessionì„ ì´ìš©í•˜ì—¬ ì‚¬ìš©ìê°€ ëª…ì‹œì ìœ¼ë¡œ log outí•˜ì§€ ì•Šì€ ê²½ìš° idê°€ ë§ëŠ” ì‚¬ìš©ìë¥¼ ìë™ ë¡œê·¸ì¸í•˜ëŠ” ì²˜ë¦¬ë¥¼ í•  ìˆ˜ ìˆë‹¤.
 
 $> npm install express-session --save
 
@@ -568,24 +568,24 @@ if(req.session.nickname){	//	check session data
 	`);
 }
 
-¡Ø sessionÀÇ ³»¿ë°ú client - server°¡ ÁÖ°í ¹ŞÀº cookie¸¦ »ìÆìº¸¸é ¾Æ·¡¿Í °°´Ù.
+â€» sessionì˜ ë‚´ìš©ê³¼ client - serverê°€ ì£¼ê³  ë°›ì€ cookieë¥¼ ì‚´í´ë³´ë©´ ì•„ë˜ì™€ ê°™ë‹¤.
 
-¨ç sessionÀÇ ³»¿ë: 'nickname' key°¡ »ı¼ºµÇ¾î ÀÖ°í °ªÀÌ ÀúÀåµÇ¾î ÀÖ´Ù.
+â‘  sessionì˜ ë‚´ìš©: 'nickname' keyê°€ ìƒì„±ë˜ì–´ ìˆê³  ê°’ì´ ì €ì¥ë˜ì–´ ìˆë‹¤.
 {"cookie":{"originalMaxAge":null,"expires":null,"httpOnly":true,"path":"/"},"nickname":"Balup zergling"}
 
-¨è cookieÀÇ ³»¿ë: session id°¡ ÀúÀåµÇ¾î ÀÖ´Ù.
+â‘¡ cookieì˜ ë‚´ìš©: session idê°€ ì €ì¥ë˜ì–´ ìˆë‹¤.
 Cookie: connect.sid=s%3AuOkZ10O2NQtSnnBhu0g7xMXMMXG3WP1I.9d23U2o09YTGyk148%2FywHOVEjfcdA8ohmOx6WrrhsCk
 
-Æ¯Á¤ Á¶°Ç(¿¹, user name°ú password°¡ ¸ğµÎ matching)ÀÌ ¸¸Á·µÇ¾úÀ» ¶§ session¿¡ data¸¦ ÀúÀåÇÏ°í(¿¹, nickname) ÀúÀåÇÑ data(¿¹, nickname)ÀÇ À¯¹«·Î µ¿ÀÏ sessionÀÎÁö È®ÀÎÇÒ ¼ö ÀÖ´Ù.
+íŠ¹ì • ì¡°ê±´(ì˜ˆ, user nameê³¼ passwordê°€ ëª¨ë‘ matching)ì´ ë§Œì¡±ë˜ì—ˆì„ ë•Œ sessionì— dataë¥¼ ì €ì¥í•˜ê³ (ì˜ˆ, nickname) ì €ì¥í•œ data(ì˜ˆ, nickname)ì˜ ìœ ë¬´ë¡œ ë™ì¼ sessionì¸ì§€ í™•ì¸í•  ìˆ˜ ìˆë‹¤.
 
-logout½Ã¿¡´Â delete ¸í·ÉÀ» ÀÌ¿ëÇÏ¿©(delete req.session.nickname) Æ¯Á¤ data¸¦ »èÁ¦ÇÏ¿© ±¸ÇöÇÑ´Ù.
+logoutì‹œì—ëŠ” delete ëª…ë ¹ì„ ì´ìš©í•˜ì—¬(delete req.session.nickname) íŠ¹ì • dataë¥¼ ì‚­ì œí•˜ì—¬ êµ¬í˜„í•œë‹¤.
 
 
-¡Û session store
+â—‹ session store
 
-ÀÏ¹İÀûÀ¸·Î sessionÀº serverÀÇ ¸Ş¸ğ¸®¿¡ ÀúÀåµÈ´Ù. ÇÏÁö¸¸ ½ÇÁ¦ ¼­ºñ½º ¼­¹ö¿¡´Â ÆÄÀÏÀÌ³ª DB¿¡ ÀúÀåµÈ´Ù.
+ì¼ë°˜ì ìœ¼ë¡œ sessionì€ serverì˜ ë©”ëª¨ë¦¬ì— ì €ì¥ëœë‹¤. í•˜ì§€ë§Œ ì‹¤ì œ ì„œë¹„ìŠ¤ ì„œë²„ì—ëŠ” íŒŒì¼ì´ë‚˜ DBì— ì €ì¥ëœë‹¤.
 
-1. file¿¡ ÀúÀå
+1. fileì— ì €ì¥
 
 $> npm install session-file-store --save
 
@@ -600,9 +600,9 @@ app.use(session({
 })
 );
 
-À§¿Í °°ÀÌ ¼³Á¤ÇÏ¸é 'sessions'¶ó´Â µğ·ºÅä¸®°¡ »ı¼ºµÇ°í ÇØ´ç µğ·ºÅä¸®¿¡ sessionÁ¤º¸°¡ ÆÄÀÏ·Î ÀúÀåµÈ´Ù.
+ìœ„ì™€ ê°™ì´ ì„¤ì •í•˜ë©´ 'sessions'ë¼ëŠ” ë””ë ‰í† ë¦¬ê°€ ìƒì„±ë˜ê³  í•´ë‹¹ ë””ë ‰í† ë¦¬ì— sessionì •ë³´ê°€ íŒŒì¼ë¡œ ì €ì¥ëœë‹¤.
 
-2. MySQL DB¿¡ ÀúÀå
+2. MySQL DBì— ì €ì¥
 
 $> npm install express-mysql-session --save
 
@@ -623,17 +623,17 @@ app.use(session({
 })
 );
 
-À§¿Í °°ÀÌ ¼³Á¤ÇÏ¸é DB¾È¿¡ sessions¶ó´Â tableÀÌ »ı¼ºµÇ°í session data°¡ ÀúÀåµÈ´Ù.
+ìœ„ì™€ ê°™ì´ ì„¤ì •í•˜ë©´ DBì•ˆì— sessionsë¼ëŠ” tableì´ ìƒì„±ë˜ê³  session dataê°€ ì €ì¥ëœë‹¤.
 
-¡Ø AppÀÌ DB¿Í ¿¬µ¿ÇÏ´Â °æ¿ì DBÀÇ save/restore delay¶§¹®¿¡ AppÀÌ ¿Àµ¿ÀÛ ÇÒ ¼ö ÀÖ´Ù. ÀÌ¸¦ ¹æÁöÇÏ±â À§ÇØ DB¿¡ data°¡ ÀúÀåµÇ´Â °ÍÀ» È®ÀÎÇÏ°í ´ÙÀ½ µ¿ÀÛÀ» ¼öÇàÇÏ´Â °ÍÀÌ ÁÁ´Ù.
+â€» Appì´ DBì™€ ì—°ë™í•˜ëŠ” ê²½ìš° DBì˜ save/restore delayë•Œë¬¸ì— Appì´ ì˜¤ë™ì‘ í•  ìˆ˜ ìˆë‹¤. ì´ë¥¼ ë°©ì§€í•˜ê¸° ìœ„í•´ DBì— dataê°€ ì €ì¥ë˜ëŠ” ê²ƒì„ í™•ì¸í•˜ê³  ë‹¤ìŒ ë™ì‘ì„ ìˆ˜í–‰í•˜ëŠ” ê²ƒì´ ì¢‹ë‹¤.
 
-¿¹)
+ì˜ˆ)
 req.session.nickname = user['nickname'];	//	store user's nickname into session
 req.session.save(function(){	//	redirect to '/welcome' after saving into DB
 	res.redirect('/welcome');
 });
 
-3. orient DB¸¦ session DB·Î »ç¿ë
+3. orient DBë¥¼ session DBë¡œ ì‚¬ìš©
 
 $> npm install connect-oriento --save
 
@@ -648,27 +648,27 @@ app.use(session({
 })
 );
 
-¡Ø ¿ª½Ã App°ú DBÀÇ µ¿ÀÛ °£¿¡ ½ÃÂ÷°¡ ¹ß»ıÇÏ¿© AppÀÌ DBÀÇ »óÅÂ¿¡ µû¶ó Á¤»óÀûÀ¸·Î µ¿ÀÛÇÏÁö ¸øÇÒ ¼ö ÀÖ±â ¶§¹®¿¡ DBÀÇ µ¿ÀÛÀÌ ¿Ï·áµÇ´Â °ÍÀ» È®ÀÎÇÑ ÈÄ AppÀÇ µ¿ÀÛÀ» ¼öÇàÇÏ´Â ºÎºĞÀ» ±¸ÇöÇÒ ÇÊ¿ä°¡ ÀÖ´Ù.
+â€» ì—­ì‹œ Appê³¼ DBì˜ ë™ì‘ ê°„ì— ì‹œì°¨ê°€ ë°œìƒí•˜ì—¬ Appì´ DBì˜ ìƒíƒœì— ë”°ë¼ ì •ìƒì ìœ¼ë¡œ ë™ì‘í•˜ì§€ ëª»í•  ìˆ˜ ìˆê¸° ë•Œë¬¸ì— DBì˜ ë™ì‘ì´ ì™„ë£Œë˜ëŠ” ê²ƒì„ í™•ì¸í•œ í›„ Appì˜ ë™ì‘ì„ ìˆ˜í–‰í•˜ëŠ” ë¶€ë¶„ì„ êµ¬í˜„í•  í•„ìš”ê°€ ìˆë‹¤.
 
-¿¹)
+ì˜ˆ)
 req.session.save(function(){	//	redirect to '/welcome' after saving into DB
 	res.redirect('/welcome');
 });
 
 
-¡İ ºñ¹Ğ¹øÈ£ °ü¸®
+â— ë¹„ë°€ë²ˆí˜¸ ê´€ë¦¬
 
-¡Û ºñ¹Ğ¹øÈ£ÀÇ ¾ÏÈ£È­
+â—‹ ë¹„ë°€ë²ˆí˜¸ì˜ ì•”í˜¸í™”
 
-hashingÀ» ÅëÇØ ¾ÏÈ£¸¦ º¯Çü½ÃÄÑ ÀúÀåÇÏ¸é hashingµÈ ¾ÏÈ£°¡ À¯ÃâµÇ´õ¶óµµ ¿ø·¡ ¾ÏÈ£¸¦ ¾Ë ¼ö ¾ø´Ù.
+hashingì„ í†µí•´ ì•”í˜¸ë¥¼ ë³€í˜•ì‹œì¼œ ì €ì¥í•˜ë©´ hashingëœ ì•”í˜¸ê°€ ìœ ì¶œë˜ë”ë¼ë„ ì›ë˜ ì•”í˜¸ë¥¼ ì•Œ ìˆ˜ ì—†ë‹¤.
 
-¿©±â¼­´Â md5¸¦ »ç¿ëÇÏ¿´´Ù. ÇÏÁö¸¸ md5´Â °áÇÔÀÌ ¹ß°ßµÇ¾ú±â ¶§¹®¿¡ ´õ ÀÌ»ó ¾ÏÈ£È­ ¸ñÀûÀ¸·Î ¾²Áö ¾Ê´Â´Ù.
+ì—¬ê¸°ì„œëŠ” md5ë¥¼ ì‚¬ìš©í•˜ì˜€ë‹¤. í•˜ì§€ë§Œ md5ëŠ” ê²°í•¨ì´ ë°œê²¬ë˜ì—ˆê¸° ë•Œë¬¸ì— ë” ì´ìƒ ì•”í˜¸í™” ëª©ì ìœ¼ë¡œ ì“°ì§€ ì•ŠëŠ”ë‹¤.
 
 $> npm install md5 --save
 
-userÀÇ ¾ÏÈ£°¡ '111'ÀÌ¾ú´Ù¸é ½ÇÁ¦ DB¿¡´Â 'md5(111)'À» ÀúÀåÇÏ°í, user°¡ Á¢¼Ó ½Ã ¾ÏÈ£¸¦ ÀÔ·ÂÇßÀ» ¶§µµ 'md5(user password)'·Î hashingµÈ ¾ÏÈ£°ªÀ» ±¸ÇÏ°í ÀÌ¸¦ DB¿¡ ÀúÀåµÇ¾î ÀÖ´Â ¾ÏÈ£¿Í ºñ±³ÇÑ´Ù.
+userì˜ ì•”í˜¸ê°€ '111'ì´ì—ˆë‹¤ë©´ ì‹¤ì œ DBì—ëŠ” 'md5(111)'ì„ ì €ì¥í•˜ê³ , userê°€ ì ‘ì† ì‹œ ì•”í˜¸ë¥¼ ì…ë ¥í–ˆì„ ë•Œë„ 'md5(user password)'ë¡œ hashingëœ ì•”í˜¸ê°’ì„ êµ¬í•˜ê³  ì´ë¥¼ DBì— ì €ì¥ë˜ì–´ ìˆëŠ” ì•”í˜¸ì™€ ë¹„êµí•œë‹¤.
 
-¿¹)
+ì˜ˆ)
 var pwd = md5(req.body.password);
 
 if(uname == user['username'] && pwd == user['password']){
@@ -678,26 +678,26 @@ if(uname == user['username'] && pwd == user['password']){
 	});
 }
 
-ÇÏÁö¸¸ ¾ÏÈ£°¡ °£´ÜÇÑ °æ¿ì (´Ù¾çÇÑ °ªµéÀ» ÀÔ·ÂÇØº¸¸é¼­) hashingÀ» crackingÇÒ ¼ö ÀÖ´Â °æ¿ì°¡ »ı±ä´Ù.
+í•˜ì§€ë§Œ ì•”í˜¸ê°€ ê°„ë‹¨í•œ ê²½ìš° (ë‹¤ì–‘í•œ ê°’ë“¤ì„ ì…ë ¥í•´ë³´ë©´ì„œ) hashingì„ crackingí•  ìˆ˜ ìˆëŠ” ê²½ìš°ê°€ ìƒê¸´ë‹¤.
 
-ÀÌ·± °æ¿ì¸¦ ¹æÁöÇÏ±â À§ÇØ¼­ 'salt'¶ó´Â Ãß°¡ º¯¼ö¸¦ »ç¿ëÇÑ´Ù.
+ì´ëŸ° ê²½ìš°ë¥¼ ë°©ì§€í•˜ê¸° ìœ„í•´ì„œ 'salt'ë¼ëŠ” ì¶”ê°€ ë³€ìˆ˜ë¥¼ ì‚¬ìš©í•œë‹¤.
 
-¿¹)
+ì˜ˆ)
 var salt = '29xwwic2@3&@s10sfacv';
 
 var pwd = 'your password';
 
 var check = md5(pwd + salt);
 
-À§¿Í °°ÀÌ 'salt' stringÀ» Ãß°¡ÇÏ¸é ÀÌ 'salt'°ªÀÌ »ó´çÈ÷ º¹ÀâÇÑ °ªÀÌ±â ¶§¹®¿¡ ¿ªÀ¸·Î ¿ø·¡°ª(= ¾ÏÈ£)À» ÃßÃ»ÇÏ´Â °ÍÀÌ ¸Å¿ì Èûµé°Ô µÈ´Ù.
+ìœ„ì™€ ê°™ì´ 'salt' stringì„ ì¶”ê°€í•˜ë©´ ì´ 'salt'ê°’ì´ ìƒë‹¹íˆ ë³µì¡í•œ ê°’ì´ê¸° ë•Œë¬¸ì— ì—­ìœ¼ë¡œ ì›ë˜ê°’(= ì•”í˜¸)ì„ ì¶”ì²­í•˜ëŠ” ê²ƒì´ ë§¤ìš° í˜ë“¤ê²Œ ëœë‹¤.
 
-¡Û SHA
+â—‹ SHA
 
-md5´Â ´õ ÀÌ»ó ¾ÏÈ£È­¸¦ À§ÇØ »ç¿ëÇÏÁö ¾Ê´Â´Ù. ±× ´ë½Å ¿©±â¼­´Â sha256À» »ç¿ëÇÑ´Ù.
+md5ëŠ” ë” ì´ìƒ ì•”í˜¸í™”ë¥¼ ìœ„í•´ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤. ê·¸ ëŒ€ì‹  ì—¬ê¸°ì„œëŠ” sha256ì„ ì‚¬ìš©í•œë‹¤.
 
 $> npm install sha256 --save
 
-¿¹)
+ì˜ˆ)
 var sha256 = require('sha256');
 
 if(uname == user['username'] && sha256(pwd + user['salt']) == user['password']){
@@ -707,15 +707,15 @@ if(uname == user['username'] && sha256(pwd + user['salt']) == user['password']){
 	});
 }
 
-¡Û Key Stretching
+â—‹ Key Stretching
 
-´Ü¹æÇâ ¾ÏÈ£È­¸¦ ¿©·¯¹ø °ÅÄ¡´Â °Í
+ë‹¨ë°©í–¥ ì•”í˜¸í™”ë¥¼ ì—¬ëŸ¬ë²ˆ ê±°ì¹˜ëŠ” ê²ƒ
 
-¿¹) sha256(sha256(sha256(target data))
+ì˜ˆ) sha256(sha256(sha256(target data))
 
-½Ç¼ö µîÀ» ¹æÁöÇÏÁö À§ÇØ Key stretching¿¡ ÇÊ¿äÇÑ ¹ø°Å·Î¿î ±¸ÇöÀ» ´Ü¼øÈ­ÇÏ±â À§ÇÑ ¹æ¹ıÀ» »ç¿ëÇÏ´Â °ÍÀÌ ÁÁ´Ù.
+ì‹¤ìˆ˜ ë“±ì„ ë°©ì§€í•˜ì§€ ìœ„í•´ Key stretchingì— í•„ìš”í•œ ë²ˆê±°ë¡œìš´ êµ¬í˜„ì„ ë‹¨ìˆœí™”í•˜ê¸° ìœ„í•œ ë°©ë²•ì„ ì‚¬ìš©í•˜ëŠ” ê²ƒì´ ì¢‹ë‹¤.
 
-º» ¿¹Á¦¿¡¼­´Â PBKDF2¸¦ »ç¿ëÇÑ´Ù.
+ë³¸ ì˜ˆì œì—ì„œëŠ” PBKDF2ë¥¼ ì‚¬ìš©í•œë‹¤.
 
 $> npm install pbkdf2-password --save
 
@@ -728,9 +728,9 @@ hasher(opts, function(err, pass, salt, hash){
 	console.log(err, pass, salt, hash);
 });
 
-À§¿¡¼­ ±¸ÇØÁø 'salt'°ª°ú 'hash'°ªÀ» »ç¿ëÀÚ DBÀÇ 'salt', 'password'°ªÀ¸·Î ¼³Á¤ÇÑ´Ù.
+ìœ„ì—ì„œ êµ¬í•´ì§„ 'salt'ê°’ê³¼ 'hash'ê°’ì„ ì‚¬ìš©ì DBì˜ 'salt', 'password'ê°’ìœ¼ë¡œ ì„¤ì •í•œë‹¤.
 
-¾Æ·¡´Â nodejs server¾È¿¡¼­ÀÇ ±¸ÇöÀÌ´Ù.
+ì•„ë˜ëŠ” nodejs serverì•ˆì—ì„œì˜ êµ¬í˜„ì´ë‹¤.
 
 var bkfd2Password = require('pbkdf2-password');
 var hasher = bkfd2Password();
@@ -749,11 +749,11 @@ if(uname == user['username']){
 	});
 }
 
-usernameÀÌ matchingµÇ´Â userÀÇ password°¡ pbkdf2ÀÇ hash°ª°ú °°´Ù¸é welcome page('/welcome')·Î redirectionÇÏ°í ÇÔ¼ö¸¦ ³¡³»µµ·Ï(return, ºñµ¿±â ¹æ½ÄÀ¸·Î µ¿ÀÛÇÏ±â ¶§¹®¿¡ µ¿ÀÛÀ» ¸¶Ä£ ÈÄ ÇÔ¼ö¸¦ exit) ÇÏ°í ÀÖ´Ù.
+usernameì´ matchingë˜ëŠ” userì˜ passwordê°€ pbkdf2ì˜ hashê°’ê³¼ ê°™ë‹¤ë©´ welcome page('/welcome')ë¡œ redirectioní•˜ê³  í•¨ìˆ˜ë¥¼ ëë‚´ë„ë¡(return, ë¹„ë™ê¸° ë°©ì‹ìœ¼ë¡œ ë™ì‘í•˜ê¸° ë•Œë¬¸ì— ë™ì‘ì„ ë§ˆì¹œ í›„ í•¨ìˆ˜ë¥¼ exit) í•˜ê³  ìˆë‹¤.
 
-¡Û userÀÇ Ãß°¡
+â—‹ userì˜ ì¶”ê°€
 
-user·Î ºÎÅÍ ¹ŞÀº username, password, nickname°ú PBKDF2¿¡¼­ »ı¼ºµÈ hash, salt°ªÀ¸·Î JSON °´Ã¼¸¦ ¸¸µç µÚ ÀÌ¸¦ users array¿¡ Ãß°¡ÇÏ´Â ¹æ¹ıÀ¸·Î °£´ÜÈ÷ ±¸ÇöÇØ º¸¾Ò´Ù.
+userë¡œ ë¶€í„° ë°›ì€ username, password, nicknameê³¼ PBKDF2ì—ì„œ ìƒì„±ëœ hash, saltê°’ìœ¼ë¡œ JSON ê°ì²´ë¥¼ ë§Œë“  ë’¤ ì´ë¥¼ users arrayì— ì¶”ê°€í•˜ëŠ” ë°©ë²•ìœ¼ë¡œ ê°„ë‹¨íˆ êµ¬í˜„í•´ ë³´ì•˜ë‹¤.
 
 var uname = req.body.username;
 
@@ -773,9 +773,9 @@ hasher({password:passwd}, function(err, pass, salt, hash){
 });
 
 
-¡İ Passport JS
+â— Passport JS
 
-¡Ø ÀÌÁ¦ºÎÅÍ DB¿¡ ¾Æ·¡¿Í °°Àº columnµéÀ» »ı¼ºÇÏ¿© »ç¿ëÀÚ µ¥ÀÌÅÍ¸¦ ÀúÀåÇÒ °ÍÀÌ´Ù.
+â€» ì´ì œë¶€í„° DBì— ì•„ë˜ì™€ ê°™ì€ columnë“¤ì„ ìƒì„±í•˜ì—¬ ì‚¬ìš©ì ë°ì´í„°ë¥¼ ì €ì¥í•  ê²ƒì´ë‹¤.
 
 mysql> create table users(
 	id INT NOT NULL AUTO_INCREMENT,
@@ -788,32 +788,32 @@ mysql> create table users(
 	UNIQUE (authId)
 	) ENGINE = InnoDB;
 
-ÀÎÁõ(authentication)À» ½±°Ô ±¸ÇöÇÒ ¼ö ÀÖµµ·Ï µµ¿ÍÁÖ´Â package
+ì¸ì¦(authentication)ì„ ì‰½ê²Œ êµ¬í˜„í•  ìˆ˜ ìˆë„ë¡ ë„ì™€ì£¼ëŠ” package
 
-Federation authentication: ¿ÜºÎÀÇ °ø½Å·ÂÀÖ´Â ´ÜÃ¼ÀÇ ·Î±×ÀÎ Á¤º¸¸¦ ÀÌ¿ëÇÏ¿© Æ¯Á¤ siteÀÇ ·Î±×ÀÎÀ» µµ¿Í ÁÖ´Â °Í
-¿¹) FB, GoogleÀ» ÅëÇØ login
+Federation authentication: ì™¸ë¶€ì˜ ê³µì‹ ë ¥ìˆëŠ” ë‹¨ì²´ì˜ ë¡œê·¸ì¸ ì •ë³´ë¥¼ ì´ìš©í•˜ì—¬ íŠ¹ì • siteì˜ ë¡œê·¸ì¸ì„ ë„ì™€ ì£¼ëŠ” ê²ƒ
+ì˜ˆ) FB, Googleì„ í†µí•´ login
 
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
 
 app.use(passport.initialize());
 app.use(passport.session());	//	use 'session' method when using passport
-¡Ø passport session ¼³Á¤ 'app.use(passport.session());'Àº session ±âº» ¼³Á¤ÀÌ ³¡³­ ÈÄ¿¡ ¼³Á¤ÇÏ¿©¾ß ÇÑ´Ù.
+â€» passport session ì„¤ì • 'app.use(passport.session());'ì€ session ê¸°ë³¸ ì„¤ì •ì´ ëë‚œ í›„ì— ì„¤ì •í•˜ì—¬ì•¼ í•œë‹¤.
 
-- Strategy: °¢°¢ÀÇ ¹æ¹ıÀ¸·Î ·Î±×ÀÎ ÇÏ´Â ¹æ¹ı
+- Strategy: ê°ê°ì˜ ë°©ë²•ìœ¼ë¡œ ë¡œê·¸ì¸ í•˜ëŠ” ë°©ë²•
 
-¨ç passport ¸ğµâÀ» includeÇÑ´Ù
+â‘  passport ëª¨ë“ˆì„ includeí•œë‹¤
 
 var passport = require('passport');
 
 
-¨è local strategy¸¦ includeÇÑ´Ù
+â‘¡ local strategyë¥¼ includeí•œë‹¤
 
 var localStrategy = require('passport-local').Strategy;
-¡Ø local strategy¸¦ »ç¿ëÇÏ±â À§ÇØ¼­´Â NPMÀÇ 'passport-local' ¸ğµâÀ» ¼³Ä¡ÇØ¾ß ÇÑ´Ù.
+â€» local strategyë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•´ì„œëŠ” NPMì˜ 'passport-local' ëª¨ë“ˆì„ ì„¤ì¹˜í•´ì•¼ í•œë‹¤.
 
 
-¨é local strategy¸¦ ±¸ÇöÇÑ´Ù
+â‘¢ local strategyë¥¼ êµ¬í˜„í•œë‹¤
 
 passport.use(new localStrategy(
 	function(username, password, done){
@@ -842,7 +842,7 @@ passport.use(new localStrategy(
 	}
 ));
 
-¨ê login ±â´ÉÀÇ post ¹æ½Ä µ¥ÀÌÅÍ Ã³¸® ¹æ¹ıÀ» ±¸ÇöÇÑ´Ù
+â‘£ login ê¸°ëŠ¥ì˜ post ë°©ì‹ ë°ì´í„° ì²˜ë¦¬ ë°©ë²•ì„ êµ¬í˜„í•œë‹¤
 
 //	execute 'local' strategy
 //	'failureFlash': instant message that notifies login failure to a user
@@ -854,7 +854,7 @@ app.post('/auth/login', passport.authenticate('local', {
 );
 
 
-¨ë passportÀÇ serializer, deserializer¸¦ ±¸ÇöÇÑ´Ù
+â‘¤ passportì˜ serializer, deserializerë¥¼ êµ¬í˜„í•œë‹¤
 
 passport.serializeUser(function(user, done){
 	console.log('serializeUser', user);
@@ -873,7 +873,7 @@ passport.deserializeUser(function(id, done){
 	}
 });
 
-login ÇÒ ¶§ serializeUserÇÔ¼ö°¡ ½ÇÇàµÇ¸é¼­ sessionÀÌ Çü¼ºµÇ°í, ÀÌÈÄ page request°¡ ÀÖÀ» ¶§ ¸¶´Ù deserializeUserÇÔ¼ö°¡ ½ÇÇàµÇ¸é¼­ cookieÀÇ session id¸¦ ÀÌ¿ëÇØ¼­ user°¡ connectµÇ¾î ÀÖ´ÂÁö È®ÀÎÇÏ°í ³»ºÎÀÇ done(null, user)ÇÔ¼ö°¡ req °´Ã¼¿¡ user°´Ã¼¸¦ »ı¼º(°»½Å)ÇÏ°í ÀÌ °´Ã¼(req.user)¸¦ ÅëÇØ °¢ page´Â userÀÇ Á¢¼Ó ¿©ºÎ¿Í user data¸¦ »ç¿ëÇÒ ¼ö ÀÖ´Ù. ¿¹¸¦ µé¸é ¾Æ·¡¿Í °°´Ù.
+login í•  ë•Œ serializeUserí•¨ìˆ˜ê°€ ì‹¤í–‰ë˜ë©´ì„œ sessionì´ í˜•ì„±ë˜ê³ , ì´í›„ page requestê°€ ìˆì„ ë•Œ ë§ˆë‹¤ deserializeUserí•¨ìˆ˜ê°€ ì‹¤í–‰ë˜ë©´ì„œ cookieì˜ session idë¥¼ ì´ìš©í•´ì„œ userê°€ connectë˜ì–´ ìˆëŠ”ì§€ í™•ì¸í•˜ê³  ë‚´ë¶€ì˜ done(null, user)í•¨ìˆ˜ê°€ req ê°ì²´ì— userê°ì²´ë¥¼ ìƒì„±(ê°±ì‹ )í•˜ê³  ì´ ê°ì²´(req.user)ë¥¼ í†µí•´ ê° pageëŠ” userì˜ ì ‘ì† ì—¬ë¶€ì™€ user dataë¥¼ ì‚¬ìš©í•  ìˆ˜ ìˆë‹¤. ì˜ˆë¥¼ ë“¤ë©´ ì•„ë˜ì™€ ê°™ë‹¤.
 
 app.get('/welcome', function(req, res){
 	// passport module creates 'user' object in the 'req' object after doing 'local' strategy
@@ -891,7 +891,7 @@ app.get('/welcome', function(req, res){
 });
 
 
-¨ì logout
+â‘¥ logout
 
 app.get('/auth/logout', function(req, res){
 	req.logout();
@@ -900,40 +900,40 @@ app.get('/auth/logout', function(req, res){
 	});
 });
 
-logout() ÇÔ¼ö¸¦ È£ÃâÇØ¼­ seesionÀ» Áö¿ì°í, ÀÌ °úÁ¤À» ¸¶Ä¡¸é(.save) Ã¹ ÆäÀÌÁö(/welcome)·Î µ¹¾Æ°£´Ù.
+logout() í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•´ì„œ seesionì„ ì§€ìš°ê³ , ì´ ê³¼ì •ì„ ë§ˆì¹˜ë©´(.save) ì²« í˜ì´ì§€(/welcome)ë¡œ ëŒì•„ê°„ë‹¤.
 
 
-¡İ Federation authentication - Å¸»ç ÀÎÁõ
+â— Federation authentication - íƒ€ì‚¬ ì¸ì¦
 
-º» ¿¹Á¦¿¡¼­´Â FaceBookÀ» »ç¿ëÇÏ¿´´Ù.
+ë³¸ ì˜ˆì œì—ì„œëŠ” FaceBookì„ ì‚¬ìš©í•˜ì˜€ë‹¤.
 
-¨ç developers.facebook.com¿¡ ¹æ¹®ÇØ¼­ ¾ÛÀ» ¸¸µé°í ¼³Á¤ÇÑ´Ù. ¿¬½À¿ë siteÀÎ °æ¿ì URL¿¡ 'localhost:port#'·Î ÀÔ·ÂÇÏ¸é µÈ´Ù.
+â‘  developers.facebook.comì— ë°©ë¬¸í•´ì„œ ì•±ì„ ë§Œë“¤ê³  ì„¤ì •í•œë‹¤. ì—°ìŠµìš© siteì¸ ê²½ìš° URLì— 'localhost:port#'ë¡œ ì…ë ¥í•˜ë©´ ëœë‹¤.
 
-¾Û »ı¼º °á°ú·Î ID¿Í secretÀÌ ¸¸µé¾îÁö°í, ±â°ü ÀÎÁõÀ» À§ÇØ ÀÌ µÎ ½Äº°ÀÚ°¡ »ç¿ëµÈ´Ù.
+ì•± ìƒì„± ê²°ê³¼ë¡œ IDì™€ secretì´ ë§Œë“¤ì–´ì§€ê³ , ê¸°ê´€ ì¸ì¦ì„ ìœ„í•´ ì´ ë‘ ì‹ë³„ìê°€ ì‚¬ìš©ëœë‹¤.
 
 
-¨è passport strategy NPMÀ» ¼³Ä¡ÇÑ´Ù.
+â‘¡ passport strategy NPMì„ ì„¤ì¹˜í•œë‹¤.
 
 $> npm install passport-facebook --save
 
 
-¨é facebook strategy router¸¦ ¸¸µç´Ù
+â‘¢ facebook strategy routerë¥¼ ë§Œë“ ë‹¤
 
-»ç¿ëÀÚ°¡ '/auth/facebook' URL¿¡ Á¢±ÙÇÏ¸é 'facebook' strategy¸¦ ½ÇÇàÇÑ´Ù.
+ì‚¬ìš©ìê°€ '/auth/facebook' URLì— ì ‘ê·¼í•˜ë©´ 'facebook' strategyë¥¼ ì‹¤í–‰í•œë‹¤.
 
 //	execute 'facebook' strategy
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
-Ãß°¡ÀûÀÎ Á¤º¸°¡ ÇÊ¿äÇÏ¸é 'scope' property¸¦ Ãß°¡ÇÑ´Ù.
+ì¶”ê°€ì ì¸ ì •ë³´ê°€ í•„ìš”í•˜ë©´ 'scope' propertyë¥¼ ì¶”ê°€í•œë‹¤.
  
 app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
 
-scope¿¡ ¸í½ÃµÈ value°¡ ÀÖÀ¸¸é facebook strategy ±¸Çö ¾È¿¡ facebook¿¡¼­ °¡Á®¿Ã fieldµéÀ» ¸í½ÃÇØ ÁÖ¾î¾ßÇÑ´Ù.
+scopeì— ëª…ì‹œëœ valueê°€ ìˆìœ¼ë©´ facebook strategy êµ¬í˜„ ì•ˆì— facebookì—ì„œ ê°€ì ¸ì˜¬ fieldë“¤ì„ ëª…ì‹œí•´ ì£¼ì–´ì•¼í•œë‹¤.
 
-¿¹) profileFields:['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified', 'displayName']
+ì˜ˆ) profileFields:['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified', 'displayName']
 
 
-¨ê facebook startegy¸¦ ±¸ÇöÇÑ´Ù
+â‘£ facebook startegyë¥¼ êµ¬í˜„í•œë‹¤
 
 //	register passport strategy for passport
 passport.use(new facebookStrategy({
@@ -961,11 +961,11 @@ passport.use(new facebookStrategy({
 })
 );
 
-facebook strategy´Â ¸î °¡Áö Á¤º¸¸¦ ´ã¾Æ¼­ facebook¿¡ º¸³½´Ù.
-±×¸®°í facebookÀÌ È£ÃâÇÏ¿© ½ÇÇà½ÃÅ³ callback ÇÔ¼ö¸¦ µî·ÏÇÑ´Ù. ÀÌ callback ÇÔ¼ö´Â DB¿¡ user data°¡ ÀÖ´ÂÁö È®ÀÎÇÏ°í, ÀÖ´Ù¸é user data¸¦ serializer·Î º¸³»°í(done(null, user)), ¾ø´Ù¸é DB¿¡ »õ·Î µî·ÏÇÏ°í »õ·Î µî·ÏÇÑ user data¸¦ serializer·Î º¸³½´Ù(done(null, newuser)).
+facebook strategyëŠ” ëª‡ ê°€ì§€ ì •ë³´ë¥¼ ë‹´ì•„ì„œ facebookì— ë³´ë‚¸ë‹¤.
+ê·¸ë¦¬ê³  facebookì´ í˜¸ì¶œí•˜ì—¬ ì‹¤í–‰ì‹œí‚¬ callback í•¨ìˆ˜ë¥¼ ë“±ë¡í•œë‹¤. ì´ callback í•¨ìˆ˜ëŠ” DBì— user dataê°€ ìˆëŠ”ì§€ í™•ì¸í•˜ê³ , ìˆë‹¤ë©´ user dataë¥¼ serializerë¡œ ë³´ë‚´ê³ (done(null, user)), ì—†ë‹¤ë©´ DBì— ìƒˆë¡œ ë“±ë¡í•˜ê³  ìƒˆë¡œ ë“±ë¡í•œ user dataë¥¼ serializerë¡œ ë³´ë‚¸ë‹¤(done(null, newuser)).
 
 
-¨ë facebook callback URLÀ» ¼³Á¤ÇÏ°í router¸¦ ±¸ÇöÇÑ´Ù.
+â‘¤ facebook callback URLì„ ì„¤ì •í•˜ê³  routerë¥¼ êµ¬í˜„í•œë‹¤.
 
 //	FaceBook calls this url
 app.get('/auth/facebook/callback', passport.authenticate(
@@ -975,13 +975,13 @@ app.get('/auth/facebook/callback', passport.authenticate(
 	})
 );
 
-facebook callbackURL¿¡´Â facebookÀÌ »ç¿ëÀÚ Á¤º¸¸¦ ´ã¾Æ¼­ º¸³¾ ¶§ È£ÃâÇÒ ´ç½Å À¥ »çÀÌÆ®ÀÇ ÁÖ¼Ò¸¦ Àû¾îÁÖ¾î¾ß ÇÑ´Ù.
-facebook strategy°¡ È°¼ºÈ­ µÇ¾úÀ» ¶§ facebookÀº facebook strategy¿¡ µé¾îÀÖ´Â callback ÇÔ¼ö¸¦ ½ÇÇà½ÃÅ°°í callbackURLÀ» È£ÃâÇÑ´Ù.
+facebook callbackURLì—ëŠ” facebookì´ ì‚¬ìš©ì ì •ë³´ë¥¼ ë‹´ì•„ì„œ ë³´ë‚¼ ë•Œ í˜¸ì¶œí•  ë‹¹ì‹  ì›¹ ì‚¬ì´íŠ¸ì˜ ì£¼ì†Œë¥¼ ì ì–´ì£¼ì–´ì•¼ í•œë‹¤.
+facebook strategyê°€ í™œì„±í™” ë˜ì—ˆì„ ë•Œ facebookì€ facebook strategyì— ë“¤ì–´ìˆëŠ” callback í•¨ìˆ˜ë¥¼ ì‹¤í–‰ì‹œí‚¤ê³  callbackURLì„ í˜¸ì¶œí•œë‹¤.
 
 
-¨ì sessionÀ» ÅëÇØ user data¸¦ °ü¸®ÇÒ serializer, deserializer ÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+â‘¥ sessionì„ í†µí•´ user dataë¥¼ ê´€ë¦¬í•  serializer, deserializer í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
 
-session¿¡ user.['authId']¸¦ ±â·ÏÇÑ´Ù.
+sessionì— user.['authId']ë¥¼ ê¸°ë¡í•œë‹¤.
 
 passport.serializeUser(function(user, done){
 	console.log('serializeUser', user);
@@ -989,7 +989,7 @@ passport.serializeUser(function(user, done){
 	done(null, user.['authId']);		//	store user name into a session
 });
 
-session¿¡ ±â·ÏµÇ¾î ÀÖ´Â id°ª(done(null, user.['authId'])ÀÌ DB¿¡ ÀÖ´Â »ç¿ëÀÚÀÇ °Í°ú °°´Ù¸é req°´Ã¼¿¡ user°´Ã¼¸¦ »ı¼ºÇÏ°Å³ª, ÀÌ¹Ì »ı¼ºµÇ¾î ÀÖÀ¸¸é updateÇÑ´Ù.
+sessionì— ê¸°ë¡ë˜ì–´ ìˆëŠ” idê°’(done(null, user.['authId'])ì´ DBì— ìˆëŠ” ì‚¬ìš©ìì˜ ê²ƒê³¼ ê°™ë‹¤ë©´ reqê°ì²´ì— userê°ì²´ë¥¼ ìƒì„±í•˜ê±°ë‚˜, ì´ë¯¸ ìƒì„±ë˜ì–´ ìˆìœ¼ë©´ updateí•œë‹¤.
 
 //	this function is called whenever user visits new pages
 passport.deserializeUser(function(id, done){
@@ -1005,12 +1005,12 @@ passport.deserializeUser(function(id, done){
 });
 
 
-¨í »ç¿ëÀÚ ÀÎÁõÀÇ °á°úÀÎ successRedirect, failureRedirect targetÀ» ±¸ÇöÇÑ´Ù.
+â‘¦ ì‚¬ìš©ì ì¸ì¦ì˜ ê²°ê³¼ì¸ successRedirect, failureRedirect targetì„ êµ¬í˜„í•œë‹¤.
 
-¿©±â¼­´Â ¾Æ·¡ÀÇ targetµéÀ» ´ë»óÀ¸·Î ÇÏ¿´´Ù.
+ì—¬ê¸°ì„œëŠ” ì•„ë˜ì˜ targetë“¤ì„ ëŒ€ìƒìœ¼ë¡œ í•˜ì˜€ë‹¤.
 {successRedirect: '/welcome', failureRedirect: '/auth/login'}
 
-req°´Ã¼¿¡ user °´Ã¼°¡ ¸¸µé¾îÁ³´ÂÁö, ±×¸®°í user°´Ã¼ ¾È¿¡ nickname field°¡ ÀÖ´ÂÁö È®ÀÎÇÏ¿© »ç¿ëÀÚ°¡ ·Î±×ÀÎ »óÅÂÀÎÁö ÆÇ´ÜÇÑ´Ù.
+reqê°ì²´ì— user ê°ì²´ê°€ ë§Œë“¤ì–´ì¡ŒëŠ”ì§€, ê·¸ë¦¬ê³  userê°ì²´ ì•ˆì— nickname fieldê°€ ìˆëŠ”ì§€ í™•ì¸í•˜ì—¬ ì‚¬ìš©ìê°€ ë¡œê·¸ì¸ ìƒíƒœì¸ì§€ íŒë‹¨í•œë‹¤.
 
 app.get('/welcome', function(req, res){
 	// passport module creates 'user' object in the 'req' object after doing 'local' strategy
@@ -1036,37 +1036,37 @@ app.get('/welcome', function(req, res){
 	}
 });
 
-¡Ú passport¿Í passport strategy¸¦ ÅëÇÑ authentication°úÁ¤À» ¿ä¾àÇÏ¸é ¾Æ·¡¿Í °°´Ù.
+â˜… passportì™€ passport strategyë¥¼ í†µí•œ authenticationê³¼ì •ì„ ìš”ì•½í•˜ë©´ ì•„ë˜ì™€ ê°™ë‹¤.
 
-¨ç app.get('/auth/facebook', passport.authenticate('facebook'));
+â‘  app.get('/auth/facebook', passport.authenticate('facebook'));
 
-¨è passport.use(new facebookStrategy({...})); facebook strategy ½ÇÇà
+â‘¡ passport.use(new facebookStrategy({...})); facebook strategy ì‹¤í–‰
 
-¨é facebookÀÌ facebookStrategyÀÇ callback ÇÔ¼ö ½ÇÇà
+â‘¢ facebookì´ facebookStrategyì˜ callback í•¨ìˆ˜ ì‹¤í–‰
 
-¨ê callbackÇÔ¼öÀÇ 'done(null, user)' ÇÔ¼ö ½ÇÇà
+â‘£ callbackí•¨ìˆ˜ì˜ 'done(null, user)' í•¨ìˆ˜ ì‹¤í–‰
 
-¨ë passport.serializeUser ÇÔ¼ö¸¦ ÅëÇØ session Çü¼º
+â‘¤ passport.serializeUser í•¨ìˆ˜ë¥¼ í†µí•´ session í˜•ì„±
 
-¨ì app.get('/auth/facebook/callback', passport.authenticate(...); ÇÔ¼ö ³»ÀÇ success/failure Redirect URL Á¢±Ù
+â‘¥ app.get('/auth/facebook/callback', passport.authenticate(...); í•¨ìˆ˜ ë‚´ì˜ success/failure Redirect URL ì ‘ê·¼
 
-¨í redirect URLÀ» ÅëÇØ »õ·Î¿î page¿¡ Á¢±ÙÇÏ¸é¼­ passport.deserializeUser(...); ÇÔ¼ö ½ÇÇà
+â‘¦ redirect URLì„ í†µí•´ ìƒˆë¡œìš´ pageì— ì ‘ê·¼í•˜ë©´ì„œ passport.deserializeUser(...); í•¨ìˆ˜ ì‹¤í–‰
 
-¨î passport.deserializeUser(...); ÇÔ¼öÀÇ done(null, user)ÇÔ¼ö°¡ ½ÇÇàµÇ¸é¼­ req.user °´Ã¼ »ı¼º or °»½Å
+â‘§ passport.deserializeUser(...); í•¨ìˆ˜ì˜ done(null, user)í•¨ìˆ˜ê°€ ì‹¤í–‰ë˜ë©´ì„œ req.user ê°ì²´ ìƒì„± or ê°±ì‹ 
 
-¨ï °¢ pageµéÀº req.user °´Ã¼¿Í ±× ¸â¹öµéÀ» ÅëÇØ sessionÀÇ À¯Áö ¿©ºÎ ¹× session data¸¦ »ç¿ëÇÒ ¼ö ÀÖ´Ù.
+â‘¨ ê° pageë“¤ì€ req.user ê°ì²´ì™€ ê·¸ ë©¤ë²„ë“¤ì„ í†µí•´ sessionì˜ ìœ ì§€ ì—¬ë¶€ ë° session dataë¥¼ ì‚¬ìš©í•  ìˆ˜ ìˆë‹¤.
 
 
 
-¡İ Jade
+â— Jade
 
-Jade extends - »ó¼Ó
+Jade extends - ìƒì†
 
-Jade HTML document generator engineÀÇ ÀåÁ¡Àº ´Ü¼øÈ÷ express¿Í ¸Â¹°·Á HTMLÀ» µ¿ÀûÀ¸·Î »ı¼ºÇØ ÁÖ´Â °Í ¸¸Àº ¾Æ´Ï´Ù. »ó¼Ó(extends), Æ÷ÇÔ(indlude) µîÀÇ ±â´ÉÀ» ÀÌ¿ëÇØ¼­ template documentÀÇ ³»¿ëÀ» È®ÀåÇÏ°Å³ª °¢ °³º° document¿¡ tamplate  documentÀÇ ³»¿ëÀ» Æ÷ÇÔ½ÃÄÑ¼­ °¢ °³º° document¸¦ È®Àå ½ÃÅ³ ¼ö ÀÖ´Ù.
+Jade HTML document generator engineì˜ ì¥ì ì€ ë‹¨ìˆœíˆ expressì™€ ë§ë¬¼ë ¤ HTMLì„ ë™ì ìœ¼ë¡œ ìƒì„±í•´ ì£¼ëŠ” ê²ƒ ë§Œì€ ì•„ë‹ˆë‹¤. ìƒì†(extends), í¬í•¨(indlude) ë“±ì˜ ê¸°ëŠ¥ì„ ì´ìš©í•´ì„œ template documentì˜ ë‚´ìš©ì„ í™•ì¥í•˜ê±°ë‚˜ ê° ê°œë³„ documentì— tamplate  documentì˜ ë‚´ìš©ì„ í¬í•¨ì‹œì¼œì„œ ê° ê°œë³„ documentë¥¼ í™•ì¥ ì‹œí‚¬ ìˆ˜ ìˆë‹¤.
 
-¡Û extends: template documentÀÇ ³»¿ëÀ» È®Àå½ÃÅ²´Ù
+â—‹ extends: template documentì˜ ë‚´ìš©ì„ í™•ì¥ì‹œí‚¨ë‹¤
 
-¿¹)
+ì˜ˆ)
 
 - template.jade
 
@@ -1097,10 +1097,10 @@ block content
 		input(type="submit")
 
 
-view.jade, add.jade°¡ templateÀÇ 'block content'¿µ¿ªÀ» È®Àå½ÃÅ°°í ÀÖ´Ù.
+view.jade, add.jadeê°€ templateì˜ 'block content'ì˜ì—­ì„ í™•ì¥ì‹œí‚¤ê³  ìˆë‹¤.
 
 
-¡Û include: °¢ °³º° document¿¡ tamplate  documentÀÇ ³»¿ëÀ» Æ÷ÇÔ½ÃÄÑ¼­ °¢ °³º° document¸¦ È®Àå½ÃÅ²´Ù
+â—‹ include: ê° ê°œë³„ documentì— tamplate  documentì˜ ë‚´ìš©ì„ í¬í•¨ì‹œì¼œì„œ ê° ê°œë³„ documentë¥¼ í™•ì¥ì‹œí‚¨ë‹¤
 
 - head.jade
 
@@ -1118,22 +1118,22 @@ html
 		h1 My Site
 		p Welcome to my super lame site.
 
-head.jade ÆÄÀÏÀ» ÀÌ¿ëÇÏ¿© index.jade ÆÄÀÏÀ» È®Àå½ÃÅ°°í ÀÖ´Ù.
+head.jade íŒŒì¼ì„ ì´ìš©í•˜ì—¬ index.jade íŒŒì¼ì„ í™•ì¥ì‹œí‚¤ê³  ìˆë‹¤.
 
 
-¡İ Create node.js module
+â— Create node.js module
 
-ÇÁ·ÎÁ§Æ®ÀÇ ¿©·¯ ÆÄÀÏµé¿¡¼­ °øÅëÀûÀ¸·Î »ç¿ëÇÏ´Â ³»¿ëµéÀ» ¸ğµâ·Î ºĞ¸®ÇÏ¿© °ü¸®ÇÒ ¼ö ÀÖ´Ù.
+í”„ë¡œì íŠ¸ì˜ ì—¬ëŸ¬ íŒŒì¼ë“¤ì—ì„œ ê³µí†µì ìœ¼ë¡œ ì‚¬ìš©í•˜ëŠ” ë‚´ìš©ë“¤ì„ ëª¨ë“ˆë¡œ ë¶„ë¦¬í•˜ì—¬ ê´€ë¦¬í•  ìˆ˜ ìˆë‹¤.
 
-¨ç module fileÀ» ¸¸µé°í module interface¸¦ ±¸ÇöÇÑ´Ù.
+â‘  module fileì„ ë§Œë“¤ê³  module interfaceë¥¼ êµ¬í˜„í•œë‹¤.
 
 module.exports.'function name' = function(args ...){
 	function body
 }
 
-¨è moduleÀ» importÇÏ°í »ç¿ëÇÑ´Ù.
+â‘¡ moduleì„ importí•˜ê³  ì‚¬ìš©í•œë‹¤.
 
-¿¹)
+ì˜ˆ)
 var calc = require('./lib/calculator');
 
 console.log('calc.sum', calc.sum(1, 2));
@@ -1141,11 +1141,11 @@ console.log('calc.sum', calc.sum(1, 2));
 console.log('calc.avg', calc.avg(1, 2));
 
 
-¡İ Router separation using module concept
+â— Router separation using module concept
 
-moduleÀÇ ÇÑ °¡Áö ÀåÁ¡(ÀÌÀÚ ´ÜÁ¡)Àº ÆÄÀÏ·Î ºĞ¸®µÈ object¸¦ ¸¸µé ¼ö ÀÖ´Â °ÍÀÌ´Ù. ÀÌ °³³äÀ» Àß ÀÌ¿ëÇÏ¸é ¿©·¯ °³ÀÇ ÆÄÀÏµéÀ» ÀÌ¿ëÇÏ¿© ÇÁ·ÎÁ§Æ® °ü¸®ÀÇ ¿ëÀÌ¼ºÀ» ³ôÀÏ ¼ö ÀÖ´Ù.
+moduleì˜ í•œ ê°€ì§€ ì¥ì (ì´ì ë‹¨ì )ì€ íŒŒì¼ë¡œ ë¶„ë¦¬ëœ objectë¥¼ ë§Œë“¤ ìˆ˜ ìˆëŠ” ê²ƒì´ë‹¤. ì´ ê°œë…ì„ ì˜ ì´ìš©í•˜ë©´ ì—¬ëŸ¬ ê°œì˜ íŒŒì¼ë“¤ì„ ì´ìš©í•˜ì—¬ í”„ë¡œì íŠ¸ ê´€ë¦¬ì˜ ìš©ì´ì„±ì„ ë†’ì¼ ìˆ˜ ìˆë‹¤.
 
-¿¹¸¦ µé¾î ¾Æ·¡¿Í °°Àº routing path¸¦ °®´Â web page°¡ ÀÖ´Ù°í ÇÏÀÚ.
+ì˜ˆë¥¼ ë“¤ì–´ ì•„ë˜ì™€ ê°™ì€ routing pathë¥¼ ê°–ëŠ” web pageê°€ ìˆë‹¤ê³  í•˜ì.
 
 /p1/r1
 /p1/r2
@@ -1153,9 +1153,9 @@ moduleÀÇ ÇÑ °¡Áö ÀåÁ¡(ÀÌÀÚ ´ÜÁ¡)Àº ÆÄÀÏ·Î ºĞ¸®µÈ object¸¦ ¸¸µé ¼ö ÀÖ´Â °ÍÀÌ´Ù. À
 /p2/r1
 /p2/r2
 
-ÀÌÀü ¿¹Á¦ ±îÁö´Â ¸ğµç routing path¸¦ ÇÏ³ªÀÇ ÆÄÀÏ ¾È¿¡ ±â·ÏÇß¾ú´Ù. ÇÏÁö¸¸ °¢°¢ÀÇ routing path°¡ µ¶¸³µÇ¾î ÀÖ°í ¼­·Î °ü°è°¡ ¾ø´Ù¸é ÀÌµéÀ» moduleÈ­ ÇÏ¿© º°µµÀÇ ÆÄÀÏ·Î ºĞ¸®ÇÏ¿© °ü¸®ÇÏ´Â°ÍÀÌ Æí¸®ÇÏ´Ù.
+ì´ì „ ì˜ˆì œ ê¹Œì§€ëŠ” ëª¨ë“  routing pathë¥¼ í•˜ë‚˜ì˜ íŒŒì¼ ì•ˆì— ê¸°ë¡í–ˆì—ˆë‹¤. í•˜ì§€ë§Œ ê°ê°ì˜ routing pathê°€ ë…ë¦½ë˜ì–´ ìˆê³  ì„œë¡œ ê´€ê³„ê°€ ì—†ë‹¤ë©´ ì´ë“¤ì„ moduleí™” í•˜ì—¬ ë³„ë„ì˜ íŒŒì¼ë¡œ ë¶„ë¦¬í•˜ì—¬ ê´€ë¦¬í•˜ëŠ”ê²ƒì´ í¸ë¦¬í•˜ë‹¤.
 
-¿¹)
+ì˜ˆ)
 
 - app_route.js
 
@@ -1187,7 +1187,7 @@ module.exports = function(express){
 }
 
 
-¡İ CRUD and Auth - more secure and personalized app 
+â— CRUD and Auth - more secure and personalized app 
 
-¡Ø ¿¹Á¦ codeÀÇ º¹Àâµµ¸¦ ³·Ãß±â À§ÇØ¼­ db, express, passport setup, ±×¸®°í router ±¸ÇöÀ» moduleÈ­ ¹æ¹ıÀ» »ç¿ëÇÏ¿© º°µµÀÇ ÆÄÀÏ·Î ºĞ¸®ÇÏ¿´´Ù(31_Authenticated_CRUD).
+â€» ì˜ˆì œ codeì˜ ë³µì¡ë„ë¥¼ ë‚®ì¶”ê¸° ìœ„í•´ì„œ db, express, passport setup, ê·¸ë¦¬ê³  router êµ¬í˜„ì„ moduleí™” ë°©ë²•ì„ ì‚¬ìš©í•˜ì—¬ ë³„ë„ì˜ íŒŒì¼ë¡œ ë¶„ë¦¬í•˜ì˜€ë‹¤(31_Authenticated_CRUD).
 
